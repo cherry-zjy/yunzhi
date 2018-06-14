@@ -17,7 +17,7 @@
 
 <view class='order-list'>
     <view class='title-btnbox'>
-      <view class='title-btn'>
+      <view class='title-btn' bindtap='orderdetail'>
         <image class='title-imgbtn' src='../../img/sy_material@2x.png'></image>
         <view class='title-name'>实验室家具</view>
       </view>

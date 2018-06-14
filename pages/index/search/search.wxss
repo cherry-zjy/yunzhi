@@ -3,7 +3,7 @@
 .search-box {
   width: 100%;
   position: relative;
-  background-color: #EFEFF4;
+  background-color: #EEEEEE;
   padding: 20rpx 0;
 }
 .serachbox{

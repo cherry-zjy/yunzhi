@@ -40,5 +40,10 @@ Page({
     wx.navigateTo({
       url: 'search/search'
     })
+  },
+  orderdetail(){
+    wx.navigateTo({
+      url: 'order/order'
+    })
   }
 })

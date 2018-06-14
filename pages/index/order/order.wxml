@@ -1,0 +1,34 @@
+<!--pages/index/order/order.wxml-->
+
+<view class="section top">
+  <view class="flex-wrp" style="flex-direction:row;">
+  
+    <view class="flex-item screen" bindtap="onPickHeaderClick"> 
+    评价<image src='../../../img/splb_evaluation@2x.png' class="search-icon {{state == 'null'? '' : 'hide'}}"></image>
+    <image src='../../../img/splb_evaluation_up@2x.png' class="search-icon {{state == 'top'? '' : 'hide'}}"></image>
+    <image src='../../../img/splb_evaluation_down@2x.png' class="search-icon {{state == 'bottom'? '' : 'hide'}}"></image>
+    </view>
+    <view class="flex-item sort {{ascending? 'on' : ''}}" bindtap="sort">品牌筛选</view>
+  </view>
+</view>
+
+  <view class="section list">
+  <view class=" flex-wrp" style="flex-direction:row" wx:for="{{datalist}}" data-id="{{item.ID}}" bindtap='jobDetail'>
+    <view class="flex-item img">
+      <image src='{{item.Image}}'></image>
+    </view>
+    <view class="flex-item detail">
+    <view class='list-name'>{{item.Name}}</view>
+    <view class='list-moneybox'>
+      <view wx:for="{{item.Star}}" wx:for-item="items" wx:key="index">
+        <image src='../../../img/pj_star@2x.png' class='star-icon'></image>
+      </view>
+       <view wx:for="{{item.Nostar}}" wx:for-item="items" wx:key="index">
+        <image src='../../../img/pj_star_no@2x.png' class='star-icon'></image>
+      </view>
+      <text class='list-money'>{{item.Star}}</text>
+    </view>
+    <view class='list-other'>{{item.Company}}</view>
+    </view>
+  </view>
+  </view>  

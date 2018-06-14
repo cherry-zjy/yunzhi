@@ -1,9 +1,10 @@
 {
   "pages":[
-    
+    "pages/index/order/order",
     
     "pages/index/index",
     "pages/index/search/search",
+    
     "pages/logs/logs"
   ],
   "window":{
