@@ -1,0 +1,216 @@
+/* pages/index/gooddetail/gooddetail.wxss */
+.good-image{
+  width: 100%;
+  height: 350rpx;
+}
+.detailbox{
+  padding: 10rpx 20rpx;
+}
+.list-moneybox{
+  margin: 20rpx 0;
+  display:flex;
+}
+.star-icon{
+  width: 40rpx;
+  height: 40rpx;
+}
+.list-money{
+  font-size: 28rpx;
+  padding: 3rpx 20rpx;
+  color: #BBBBBB;
+}
+.good-name{
+  font-weight: bolder;
+  font-size: 32rpx;
+}
+.greyline{
+  height: 20rpx;
+  background-color: #EEEEEE;
+}
+/* 详情和评论 */
+.flex-wrp{
+  margin-top: 5rpx;
+  display:flex;
+  border-bottom: 1rpx solid #EEEEEE;
+}
+.top .flex-item{
+  font-size: 30rpx;
+  padding: 20rpx 0; 
+  text-align: center;
+  width: 50%;
+  color:#666666;
+}
+.check{
+  padding: 20rpx 0; 
+}
+.check.on{
+  border-bottom: 5rpx solid #26A3DE;
+  color: #26A3DE;
+}
+.search-icon{
+  margin-left: 10rpx;
+  width: 18rpx;
+  height: 26rpx;
+}
+.search-icon.hide{
+  display: none;
+}
+/* 详情 */
+.gooddetailbox{
+  padding: 30rpx 20rpx;
+}
+.title{
+  font-size: 32rpx;
+}
+/* 表格样式 */
+.table {
+  background-color: #fff;
+  margin-top: 20rpx;
+  color: #999999;
+  border-bottom: 1rpx solid #EEEEEE;
+}
+.onetr {
+  display: flex;
+  width: 100%;
+  background-color: #fff;
+  align-items: center;
+  padding: 8rpx 0;
+  border: 1rpx solid #EEEEEE;
+  border-bottom: unset;
+}
+.one-td3{
+  width: 40%;
+  justify-content: center;
+  text-align: left;
+  font-size: 30rpx;
+  padding-left:20rpx;
+}
+.one-td4{
+  width: 60%;
+  text-align: left;
+  padding-left: 20rpx;
+  justify-content: center;
+  font-size: 30rpx;
+  border-left: 1rpx solid #EEEEEE;
+}
+.th {
+  width: 40%;
+  justify-content: center;
+  color: #fff;
+  display: flex;
+  align-items: center;
+}
+.basic-td2.no,
+.one-td1.no{
+  background-color: unset;
+}
+/* 经纪人 */
+.store-agent{
+  margin-top: 30rpx;
+  float: left;
+  padding-bottom: 100rpx;
+}
+.agent-box{
+  float: left;
+  padding: 20rpx 0;
+}
+.store-img{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+.agent-msg{
+  float: left;
+  margin-left: 30rpx;
+}
+.store-phone{
+  color: #8a8a8a;
+}
+.store-icon{
+  width: 150rpx;
+  height: 150rpx;
+}
+.agent-detail{
+  float: left;
+  font-size: 30rpx;
+}
+.agent-box.detail{
+  margin-top: 20rpx;
+  margin-left: 20rpx;
+}
+.agent-name{
+  font-size: 32rpx;
+}
+.agent-phone{
+  color: #26A3DE;
+  font-size: 30rpx;
+  margin-left: 10rpx;
+}
+.agent-add{
+  margin-top: 20rpx;
+  font-size: 30rpx;
+  color: #666666
+}
+.agent-brand{
+  margin-left: 10rpx;
+  border-left: 1rpx solid #666666;
+  padding-left: 10rpx;
+  color: #666666
+}
+
+/* 底部栏 */
+.section.foot{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 10;
+  height: 100rpx;
+}
+.flex-wrp.flexfoot{
+  margin-bottom: 0;
+  padding: 0;
+}
+.flex-wrp.flexfoot .flex-item{
+  font-size: 32rpx;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+.flex-item.floow{
+  width: 50%;
+  height: 100rpx;
+  background-color: #F47E1F;
+}
+.flex-item.attend{
+  width: 50%;
+  height: 100rpx;
+  background-color: #26A3DE;
+}
+/* 评论 */
+.evabox{
+  padding-bottom: 100rpx;
+}
+.flex-wrp.eva{
+  display: block;
+  padding: 10rpx 30rpx;
+  position: relative;
+}
+.list-starbox{
+  margin:0;
+  display:flex;
+}
+.eva-name{
+  font-size: 30rpx;
+}
+.content{
+  font-size: 30rpx;
+}
+.eva-time{
+  position: absolute;
+  right: 30rpx;
+  color: #BBBBBB;
+  font-size: 30rpx;
+  top: 10rpx;
+}

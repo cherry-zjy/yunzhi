@@ -38,6 +38,11 @@ Page({
       })
     }
   },
+  goodDetail(){
+    wx.navigateTo({
+      url: '../gooddetail/gooddetail'
+    })
+  },
   // star(){
 
   // },

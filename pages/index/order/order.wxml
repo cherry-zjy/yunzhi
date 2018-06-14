@@ -13,7 +13,7 @@
 </view>
 
   <view class="section list">
-  <view class=" flex-wrp" style="flex-direction:row" wx:for="{{datalist}}" data-id="{{item.ID}}" bindtap='jobDetail'>
+  <view class=" flex-wrp" style="flex-direction:row" wx:for="{{datalist}}" data-id="{{item.ID}}" bindtap='goodDetail'>
     <view class="flex-item img">
       <image src='{{item.Image}}'></image>
     </view>
