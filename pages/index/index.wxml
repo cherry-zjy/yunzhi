@@ -1,9 +1,60 @@
 <!--index.wxml-->
+<view class="page-section-spacing search-box">
+  <view class="serachbox">
+    <input class='search' bindtap='gotosearch' placeholder='输入您想查找的内容' disabled="true" bindtap='search'></input>
+    <image class='search-icon' src='../../img/sy_search@2x.png'></image>
+  </view>
+</view>
+
 <swiper indicator-dots="{{indicatorDots}}"
   autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
   <block wx:for="{{imgUrls}}">
     <swiper-item>
-      <image src="{{item}}" class="slide-image" width="355" height="150"/>
+      <image src="{{item}}" class="slide-image" height="150"/>
     </swiper-item>
   </block>
 </swiper>
+
+<view class='order-list'>
+    <view class='title-btnbox'>
+      <view class='title-btn'>
+        <image class='title-imgbtn' src='../../img/sy_material@2x.png'></image>
+        <view class='title-name'>实验室家具</view>
+      </view>
+      <view class='title-btn'>
+        <image class='title-imgbtn' src='../../img/sy_material@2x.png'></image>
+        <view class='title-name'>实验室家具</view>
+      </view>
+      <view class='title-btn'>
+        <image class='title-imgbtn' src='../../img/sy_material@2x.png'></image>
+        <view class='title-name'>实验室家具</view>
+      </view>
+    </view>
+  </view>
+  <view class='order-list'>
+    <view class='title-btnbox'>
+      <view class='title-btn'>
+        <image class='title-imgbtn' src='../../img/sy_material@2x.png'></image>
+        <view class='title-name'>实验室家具</view>
+      </view>
+      <view class='title-btn'>
+        <image class='title-imgbtn' src='../../img/sy_material@2x.png'></image>
+        <view class='title-name'>实验室家具</view>
+      </view>
+      <view class='title-btn'>
+        <image class='title-imgbtn' src='../../img/sy_add@2x.png'></image>
+        <view class='title-name'>更多分类</view>
+      </view>
+    </view>
+  </view>
+  <view class='greyline'></view>
+  <view class='recommend'><image src='../../img/sy_like@2x.png'></image><text>推荐仪器</text></view>
+  <view class='goods-list' wx:for="{{goodsList}}" wx:key="index" data-id='{{item.ID}}' bindtap='goodsDetail'>
+    <view>
+      <image class='goods-img' src='{{item.ImageUrl}}'></image>
+    </view>
+    <view class='goods-info'>
+      <view class='goods-name'>{{item.Name}}</view>
+      <view class='goods-price'>{{item.Company}}</view>
+    </view>
+  </view>

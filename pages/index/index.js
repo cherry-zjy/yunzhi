@@ -12,6 +12,33 @@ Page({
     indicatorDots: true,
     autoplay: true,
     interval: 5000,
-    duration: 1000
+    duration: 1000,
+    goodsList:[{
+      ID:'1',
+      ImageUrl:'../../img/sy_recommended_material@2x.png',
+      Name:'全自动普色艺展开仪NIFETK-2E',
+      Company:'仪器品牌公司'
+    }, {
+      ID: '1',
+      ImageUrl: '../../img/sy_recommended_material@2x.png',
+      Name: '全自动普色艺展开仪NIFETK-2E',
+      Company: '仪器品牌公司'
+      }, {
+        ID: '1',
+        ImageUrl: '../../img/sy_recommended_material@2x.png',
+        Name: '全自动普色艺展开仪NIFETK-2E',
+        Company: '仪器品牌公司'
+      }, {
+        ID: '1',
+        ImageUrl: '../../img/sy_recommended_material@2x.png',
+        Name: '全自动普色艺展开仪NIFETK-2E',
+        Company: '仪器品牌公司'
+      },
+    ]
   },
+  search(){
+    wx.navigateTo({
+      url: 'search/search'
+    })
+  }
 })
