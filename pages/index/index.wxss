@@ -22,7 +22,6 @@
 .search {
   background-color: #fff;
   font-size: 30rpx;
-  border-radius: 25rpx;
   padding: 5rpx 0 5rpx calc(8% + 20rpx);
 }
 .serachbox .search-icon {

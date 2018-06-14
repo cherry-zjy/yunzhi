@@ -1,1 +1,55 @@
 /* pages/index/search/search.wxss */
+/* 搜索框 */
+.search-box {
+  width: 100%;
+  position: relative;
+  background-color: #EFEFF4;
+  padding: 20rpx 0;
+}
+.serachbox{
+  margin-left: 2%;
+  margin-right: 2%;
+  display:flex;
+  align-items: center;
+}
+.picker{
+  width: 32%;
+  font-size: 30rpx;
+  text-align: center;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  margin-right: 3%;
+  color: #999999;
+  height: 60rpx;
+}
+.inputbox{
+  width: 52%;
+  margin-right: 3%;
+}
+.search {
+  background-color: #fff;
+  height: 60rpx;
+  font-size: 30rpx;
+  padding-left: calc(8% + 12rpx);
+}
+.serachbox .search-icon {
+  position: absolute;
+  left: 36%;
+  width: 40rpx;
+  height: 40rpx;
+  top:28rpx;
+  z-index: 1;
+}
+.picker-icon{
+  width: 40rpx;
+  height: 40rpx;
+  vertical-align: middle;
+}
+.searchtext{
+  width: 10%;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 30rpx;
+}
