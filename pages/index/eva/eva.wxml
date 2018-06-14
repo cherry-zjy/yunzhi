@@ -1,2 +1,24 @@
 <!--pages/index/eva/eva.wxml-->
-<text>pages/index/eva/eva.wxml</text>
+<view class="page-section">
+  <view class="textarea-wrp">
+    <textarea auto-focus="true" style="height: 8em" placeholder='请输入评价内容' bindinput="Changeinput" />
+  </view>
+  <view class='eva-star'>
+  <view class='title'>评价星数</view>
+    <view class='list-moneybox'>
+      <view wx:for="{{5}}" wx:if="{{!iseva}}">
+        <image src='../../../img/pj_star_no@2x.png' class='star-icon' wx:key="index" data-id="{{index}}" bindtap='eva'></image>
+      </view>
+      <view wx:for="{{star}}" wx:if="{{iseva}}">
+        <image src='../../../img/pj_star@2x.png' class='star-icon' wx:key="index" data-id="{{index}}" bindtap='eva'></image>
+      </view>
+      <view wx:for="{{nostar}}" wx:if="{{iseva}}">
+        <image src='../../../img/pj_star_no@2x.png' class='star-icon' wx:key="index" data-id="{{nostarindex}}" bindtap='eva'></image>
+      </view>
+      <text class='list-money'>{{List.Star}}</text>
+    </view>
+  </view>
+</view>
+<view class='footer-btn' bindtap='delLogin'>
+  <text class='buy-btn'>退出登录</text>
+</view>

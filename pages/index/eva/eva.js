@@ -5,7 +5,21 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    iseva:false,
+    star:0,
+    nostar:5,
+    nostarindex:0
+  },
+  eva(e){
+    // console.log(e.currentTarget.dataset.id)
+    this.setData({
+      iseva:true,
+      star: e.currentTarget.dataset.id+1,
+      nostarindex: e.currentTarget.dataset.id,
+      nostar: 4 - (e.currentTarget.dataset.id)
+    })
+    console.log(this.data.star)
+    console.log(this.data.nostar)
   },
 
   /**

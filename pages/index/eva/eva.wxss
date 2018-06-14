@@ -1,1 +1,56 @@
 /* pages/index/eva/eva.wxss */
+page{
+  background-color: #F6F6F6;
+}
+textarea {
+  font-size: 30rpx;
+  width: 700rpx;
+  padding: 25rpx 0;
+}
+.textarea-wrp {
+  padding: 0 25rpx;
+  background-color: #fff;
+  margin-top: 20rpx;
+}
+.footer-btn {
+  position: fixed;
+  bottom: 0;
+  width: 750rpx;
+  height: 98rpx;
+  background: #26A3DE;
+  opacity: 0.96;
+  text-align: center;
+}
+
+.buy-btn {
+  width: 118rpx;
+  font-size: 30rpx;
+  color: #fff;
+  line-height: 98rpx;
+}
+/* 星级评价 */
+.eva-star{
+  background-color: #fff;
+  float: left;
+  width: 100%;
+  border-top: 1rpx solid #EEEEEE;
+}
+.list-moneybox{
+  float: right;
+  margin: 20rpx 0;
+  display:flex;
+}
+.star-icon{
+  width: 40rpx;
+  height: 40rpx;
+}
+.list-money{
+  font-size: 28rpx;
+  padding: 3rpx 20rpx;
+  color: #BBBBBB;
+}
+.title{
+  float: left;
+  font-size: 32rpx;
+  margin:20rpx 25rpx;
+}
