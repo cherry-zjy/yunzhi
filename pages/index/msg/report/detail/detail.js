@@ -1,30 +1,11 @@
-// pages/index/msg/report/report.js
+// pages/index/msg/report/detail/detail.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    list:[{
-      No: '123456798',
-      Status:'未处理',
-      bz:'东西已妥当',
-      dec:'物料描述  硫化氢检测馆/10*20ppm',
-      name:'王师傅，李师傅，刘师傅',
-      Time:'2018-06-15 13:46:56'
-    }, {
-      No: '123456798',
-      Status: '催办接受',
-      bz: '东西已妥当',
-      dec: '物料描述  硫化氢检测馆/10*20ppm',
-      name: '王师傅，李师傅，刘师傅',
-      Time: '2018-06-15 13:46:56'
-    }]
-  },
-  handle(){
-    wx.navigateTo({
-      url: 'detail/detail'
-    })
+  
   },
 
   /**

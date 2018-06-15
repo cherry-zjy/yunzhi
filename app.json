@@ -1,7 +1,5 @@
 {
   "pages":[
-    "pages/index/msg/report/report",
-    
 
     "pages/index/index",
     "pages/index/search/search",
@@ -9,6 +7,8 @@
     "pages/index/gooddetail/gooddetail",
     "pages/index/eva/eva",
     "pages/index/msg/msg",
+    "pages/index/msg/report/report",
+    "pages/index/msg/report/detail/detail",
     "pages/index/eva/evafeedback/evafeedback",
     "pages/logs/logs"
   ],

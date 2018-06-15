@@ -1,2 +1,43 @@
 <!--pages/index/msg/report/report.wxml-->
-<text>pages/index/msg/report/report.wxml</text>
+<view class="page-section-spacing search-box">
+  <view class="serachbox">
+    <input class='search' bindtap='gotosearch' placeholder='请输入物料描述的关键字' bindtap='search'></input>
+    <image class='search-icon' src='../../../../img/sy_search@2x.png'></image>
+  </view>
+</view>
+<view wx:for="{{list}}" wx:key="index" class='orderbox'>
+  <view class='order-number'>
+    <view class='order-no'>需求单号：{{item.No}}</view>
+    <view class="order-status {{item.Status == '催办接受'? 'cb' : ''}}">{{item.Status}}</view>
+  </view>
+  <view class='order-dec'>
+    <view class='order-description'>物料描述：{{item.dec}}</view>
+    <view class='order-description'>接收人：{{item.name}}</view>
+  </view>
+  <view class='order-other'>
+    <view class='orderbzbox'>
+      <view class='order-bz'>备注：{{item.bz}}</view>
+      <view class='order-time' wx:if="{{item.Status == '催办接受'}}">{{item.Time}}</view>
+    </view>
+    <view class='orderbzbox'>
+      <view class='order-bz'>王师傅：{{item.bz}}</view>
+      <view class='order-time' wx:if="{{item.Status == '催办接受'}}">{{item.Time}}</view>
+    </view>
+    <view class='orderbzbox'>
+      <view class='order-bz'>李师傅：{{item.bz}}</view>
+      <view class='order-time' wx:if="{{item.Status == '催办接受'}}">{{item.Time}}</view>
+    </view>
+    <view class='orderbzbox'>
+      <view class='order-bz'>刘师傅：{{item.bz}}</view>
+      <view class='order-time' wx:if="{{item.Status == '催办接受'}}">{{item.Time}}</view>
+    </view>
+  </view>
+  <view class='order-kucun'>
+    <view class='order-kczs'>库存指示：
+      <view wx:if="{{item.Status == '未处理'}}" class='order-point cb'></view>
+      <view class='order-point ycb' wx:if="{{item.Status == '催办接受'}}"></view>
+    </view>
+    <button wx:if="{{item.Status == '未处理'}}" class='order-btn cb' bindtap='handle'>催办</button>
+    <button wx:if="{{item.Status == '催办接受'}}" class='order-btn ycb' bindtap='handle'>已催办</button>
+  </view>
+</view>
