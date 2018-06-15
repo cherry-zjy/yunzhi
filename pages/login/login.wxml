@@ -1,0 +1,32 @@
+<!--pages/login/login.wxml-->
+<image src='../../../img/logo@2x.png' class='bg-icon'></image>
+<view class='bg'>
+  <view class='login-form'>
+    <form bindsubmit="formSubmit" bindreset="formReset">
+      <view class="flex-wrp" style="flex-direction:row;">
+        <view class="flex-item phonet" style='width:10%'>+86</view>
+        <view class="flex-item" style='width:90%'>
+          <input class='input-box phone' name="Phone" placeholder="请输入手机号" auto-focus bindinput="Changephone" type='number' />
+        </view>
+      </view>
+      <view class="flex-wrp" style="flex-direction:row;">
+        <view class="flex-item" style='width:70%'>
+          <input class='input-box code' name="code" type="text" maxlength="18" placeholder='请输入验证码' type='number' />
+        </view>
+        <view class="flex-item" style='width:30%'>
+          <text class='getcode' bindtap='getVerificationCode' disabled='{{disabled}}' data-id="2">{{time}}</text>
+        </view>
+      </view>
+      <view class="errod">{{tip}}</view>
+      <view class="btn-area">
+        <button class='btn' formType="submit">登录</button>
+      </view>
+    </form>
+  </view>
+  <view class='service' class='grey'>
+    <checkbox-group bindchange="checkboxChange">
+      <checkbox value="true" checked="true" color="#BBBBBB" checked="false" /> 已阅读
+      <text class='blue' bindtap='service'>《用户协议》</text>
+    </checkbox-group>
+  </view>
+</view>

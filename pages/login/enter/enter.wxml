@@ -1,0 +1,7 @@
+<!--pages/login/enter/enter.wxml-->
+<image src='../../../img/logo@2x.png' class='bg-icon'></image>
+<view class='title'>欢迎来带到云指小程序</view>
+<view class="btn-area">
+  <button class='btn' bindtap="submit">注册登录</button>
+  <button class='btn youke' bindtap="youke">以游客身份浏览</button>
+</view>

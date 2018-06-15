@@ -1,0 +1,29 @@
+/* pages/login/enter/enter.wxss */
+page{
+  background-color: #fff;
+  text-align: center;
+}
+.bg-icon{
+  width: 250rpx;
+  height: 250rpx;
+  margin-top: 100rpx;
+}
+.title{
+  font-size: 32rpx;
+  margin-top: 20rpx;
+}
+.btn-area{
+  padding: 40% 0;
+}
+.btn {
+  background: #26A3DE;
+  width: 80%;
+  color: #fff;
+  margin-top: 50rpx;
+}
+.btn.youke{
+  border: 1rpx solid #26A3DE;
+  background-color: #fff;
+  color: #333333;
+  font-size: 32rpx;
+}
