@@ -1,0 +1,28 @@
+/* pages/index/eva/evafeedback/evafeedback.wxss */
+page{
+  text-align: center;
+}
+image{
+  width: 400rpx;
+  height: 400rpx;
+  margin-top: 20%;
+}
+.success{
+  font-size: 32rpx;
+}
+.show{
+  font-size: 30rpx;
+  color: #999999;
+  margin-top: 10rpx;
+}
+.btn-area{
+  text-align: center;
+  width: 80%;
+  margin-left: 10%;
+}
+.btn {
+  background: #26A3DE;
+  color: #fff;
+  margin-top: 90rpx;
+  font-size: 30rpx;
+}

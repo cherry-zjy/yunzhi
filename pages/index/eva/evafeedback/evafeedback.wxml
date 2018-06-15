@@ -1,0 +1,7 @@
+<!--pages/index/eva/evafeedback/evafeedback.wxml-->
+<image src='../../../../img/pjcg_evaluation_success@2x.png'></image>
+<view class='success'>评价成功</view>
+<view class='show'>您的评价需平台审核通过以后才能显示</view>
+<view class="btn-area">
+  <button class='btn' bindtap="back">返回</button>
+</view>

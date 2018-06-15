@@ -1,46 +1,14 @@
-// pages/index/eva/eva.js
+// pages/index/eva/evafeedback/evafeedback.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    flag2: 0
+  
   },
-  changeColor11: function () {
-    var that = this;
-    that.setData({
-      flag2: 1
-    });
-  },
-  changeColor12: function () {
-    var that = this;
-    that.setData({
-      flag2: 2
-    });
-  },
-  changeColor13: function () {
-    var that = this;
-    that.setData({
-      flag2: 3
-    });
-  },
-  changeColor14: function () {
-    var that = this;
-    that.setData({
-      flag2: 4
-    });
-  },
-  changeColor15: function () {
-    var that = this;
-    that.setData({
-      flag2: 5
-    });
-  },
-  save(){
-    wx.navigateTo({
-      url: 'evafeedback/evafeedback'
-    })
+  back() {
+    wx.navigateBack({});
   },
 
   /**

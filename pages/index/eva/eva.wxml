@@ -5,20 +5,15 @@
   </view>
   <view class='eva-star'>
   <view class='title'>评价星数</view>
-    <view class='list-moneybox'>
-      <view wx:for="{{5}}" wx:if="{{!iseva}}">
-        <image src='../../../img/pj_star_no@2x.png' class='star-icon' wx:key="index" data-id="{{index}}" bindtap='eva'></image>
-      </view>
-      <view wx:for="{{star}}" wx:if="{{iseva}}">
-        <image src='../../../img/pj_star@2x.png' class='star-icon' wx:key="index" data-id="{{index}}" bindtap='eva'></image>
-      </view>
-      <view wx:for="{{nostar}}" wx:if="{{iseva}}">
-        <image src='../../../img/pj_star_no@2x.png' class='star-icon' wx:key="index" data-id="{{nostarindex}}" bindtap='eva'></image>
-      </view>
-      <text class='list-money'>{{List.Star}}</text>
-    </view>
+    <view  class="star-pos" style="display:flex;flex-direction:row;">
+            <view class="starsM  {{flag2>=1? '': 'hideStar'}}"  bindtap="changeColor11"></view>
+            <view class="starsM  {{flag2>=2? '': 'hideStar'}}"  bindtap="changeColor12"></view>
+            <view class="starsM  {{flag2>=3? '': 'hideStar'}}"  bindtap="changeColor13"></view>
+            <view class="starsM  {{flag2>=4? '': 'hideStar'}}"  bindtap="changeColor14"></view>
+            <view class="starsM  {{flag2>=5? '': 'hideStar'}}"  bindtap="changeColor15"></view>
+        </view>
   </view>
 </view>
-<view class='footer-btn' bindtap='delLogin'>
-  <text class='buy-btn'>退出登录</text>
+<view class='footer-btn' bindtap='save'>
+  <text class='buy-btn'>保存</text>
 </view>
