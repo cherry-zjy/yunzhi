@@ -1,0 +1,45 @@
+/* pages/index/msg/msg.wxss */
+page{
+  background-color: #EEEEEE;
+}
+.flex-wrp{
+  background-color: #fff;
+  display: flex;
+  padding: 20rpx 10rpx;
+  font-size: 32rpx;
+  border-bottom: 1rpx solid #EEEEEE;
+}
+.flex-item.icon{
+  width: 80rpx;
+}
+.flex-item.icon image{
+  width: 80rpx;
+  height: 80rpx;
+}
+.flex-item.msg{
+  margin-left: 10rpx;
+}
+.msg-time{
+  color: #BBBBBB;
+  font-size: 30rpx;
+}
+.msg-content{
+  color: #BBBBBB;
+  font-size: 30rpx;
+}
+.footer-btn {
+  position: fixed;
+  bottom: 0;
+  width: 750rpx;
+  height: 98rpx;
+  background: #26A3DE;
+  opacity: 0.96;
+  text-align: center;
+}
+
+.buy-btn {
+  width: 118rpx;
+  font-size: 30rpx;
+  color: #fff;
+  line-height: 98rpx;
+}

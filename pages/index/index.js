@@ -45,5 +45,10 @@ Page({
     wx.navigateTo({
       url: 'order/order'
     })
+  },
+  cuiban(){
+    wx.navigateTo({
+      url: 'msg/msg'
+    })
   }
 })

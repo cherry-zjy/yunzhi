@@ -114,3 +114,11 @@
   color: #999999;
   font-size: 28rpx;
 }
+.icon{
+  position:fixed;
+  bottom:10%;
+  right:10%;
+  width:110rpx;
+  height:110rpx;
+  z-index:1;
+}

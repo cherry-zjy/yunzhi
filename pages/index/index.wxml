@@ -58,3 +58,4 @@
       <view class='goods-price'>{{item.Company}}</view>
     </view>
   </view>
+  <image src='../../img/sy_consulting@2x.png' class='icon' bindtap='cuiban'></image>
