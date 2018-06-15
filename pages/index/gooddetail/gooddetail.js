@@ -15,22 +15,19 @@ Page({
     evalist:[{
       Name:'用户',
       Star: 4,
-      NoStar: 1,
-      NoStar: 1,
+      Nostar: 1,
       Time: '2018-06-14',
       Content:'很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒',
     },{
       Name: '用户',
       Star: 4,
-      NoStar: 1,
-      NoStar: 1,
+      Nostar: 1,
       Time: '2018-06-14',
       Content: '很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒',
       }, {
         Name: '用户',
         Star: 4,
-        NoStar: 1,
-        NoStar: 1,
+        Nostar: 1,
         Time: '2018-06-14',
         Content: '很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒',
       }]

@@ -4,7 +4,7 @@
   <view class="flex-wrp" style="flex-direction:row;">
   
     <view class="flex-item screen" bindtap="onPickHeaderClick"> 
-    评价<image src='../../../img/splb_evaluation@2x.png' class="search-icon {{state == 'null'? '' : 'hide'}}"></image>
+    <text class="comment {{state == 'null'? '' : 'hide'}}">评价</text><image src='../../../img/splb_evaluation@2x.png' class="search-icon {{state == 'null'? '' : 'hide'}}"></image>
     <image src='../../../img/splb_evaluation_up@2x.png' class="search-icon {{state == 'top'? '' : 'hide'}}"></image>
     <image src='../../../img/splb_evaluation_down@2x.png' class="search-icon {{state == 'bottom'? '' : 'hide'}}"></image>
     </view>

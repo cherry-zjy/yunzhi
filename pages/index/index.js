@@ -55,5 +55,10 @@ Page({
     wx.navigateTo({
       url: 'allorder/allorder'
     })
+  },
+  goodsDetail(){
+    wx.navigateTo({
+      url: 'gooddetail/gooddetail'
+    })
   }
 })

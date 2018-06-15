@@ -1,5 +1,5 @@
 <!--pages/login/login.wxml-->
-<image src='../../../img/logo@2x.png' class='bg-icon'></image>
+<image src='../../img/logo@2x.png' class='bg-icon'></image>
 <view class='bg'>
   <view class='login-form'>
     <form bindsubmit="formSubmit" bindreset="formReset">
