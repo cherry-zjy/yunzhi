@@ -21,11 +21,11 @@
         <image class='title-imgbtn' src='../../img/sy_material@2x.png'></image>
         <view class='title-name'>实验室家具</view>
       </view>
-      <view class='title-btn'>
+      <view class='title-btn' bindtap='orderdetail'>
         <image class='title-imgbtn' src='../../img/sy_material@2x.png'></image>
         <view class='title-name'>实验室家具</view>
       </view>
-      <view class='title-btn'>
+      <view class='title-btn' bindtap='orderdetail'>
         <image class='title-imgbtn' src='../../img/sy_material@2x.png'></image>
         <view class='title-name'>实验室家具</view>
       </view>
@@ -33,15 +33,15 @@
   </view>
   <view class='order-list'>
     <view class='title-btnbox'>
-      <view class='title-btn'>
+      <view class='title-btn' bindtap='orderdetail'>
         <image class='title-imgbtn' src='../../img/sy_material@2x.png'></image>
         <view class='title-name'>实验室家具</view>
       </view>
-      <view class='title-btn'>
+      <view class='title-btn' bindtap='orderdetail'>
         <image class='title-imgbtn' src='../../img/sy_material@2x.png'></image>
         <view class='title-name'>实验室家具</view>
       </view>
-      <view class='title-btn'>
+      <view class='title-btn' bindtap='alldetail'>
         <image class='title-imgbtn' src='../../img/sy_add@2x.png'></image>
         <view class='title-name'>更多分类</view>
       </view>

@@ -1,2 +1,41 @@
 <!--pages/index/msg/report/detail/detail.wxml-->
-<text>pages/index/msg/report/detail/detail.wxml</text>
+<!-- <image src='../../../../../img/sbxq_bj@2x.png' class='bj'></image> -->
+<view class='title'>库存指示：不足</view>
+<view class='msgbox'>
+<view class='msg'>
+  <view class='msg-title'>需求单号</view>
+  <view class='msg-detail'>9000704025</view>
+</view>
+<view class='msg'>
+  <view class='msg-title'>预留号</view>
+  <view class='msg-detail'>9000704025</view>
+</view>
+<view class='msg'>
+  <view class='msg-title'>需求日期</view>
+  <view class='msg-detail'>9000704025</view>
+</view>
+<view class='msg'>
+  <view class='msg-title'>创建日期</view>
+  <view class='msg-detail'>9000704025</view>
+</view>
+<view class='msg'>
+  <view class='msg-title'>物料编码</view>
+  <view class='msg-detail'>9000704025</view>
+</view>
+<view class='msg'>
+  <view class='msg-title'>需求数量</view>
+  <view class='msg-detail'>9000704025</view>
+</view>
+<view class='msg'>
+  <view class='msg-title'>基本计量单位</view>
+  <view class='msg-detail'>9000704025</view>
+</view>
+<view class='msg'>
+  <view class='msg-title'>物料描述</view>
+  <view class='msg-detail'>9000704025</view>
+</view>
+<view class='msg'>
+  <view class='msg-title'>成本中心描述</view>
+  <view class='msg-detail'>9000704025</view>
+</view>
+</view>

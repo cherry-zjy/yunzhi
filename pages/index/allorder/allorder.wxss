@@ -1,0 +1,34 @@
+/* pages/index/allorder/allorder.wxss */
+/*列表  */
+
+.list-info {
+  height: 100rpx;
+  background-color: #fff;
+  overflow: hidden;
+  border-bottom: 1rpx solid #efefef;
+  opacity: 0.9;
+  font-size: 32rpx;
+}
+
+.list-img {
+  height: 80rpx;
+  width: 80rpx;
+  float: left;
+  border-radius: 50%;
+  margin-top: 10rpx;
+  margin-left: 20rpx; 
+}
+
+.list-name {
+  float: left;
+  line-height: 100rpx;
+  font-size: 32rpx;
+  margin-left: 20rpx; 
+}
+
+.icon-list {
+  float: right;
+  width: 60rpx;
+  height: 60rpx;
+  margin-top: 20rpx;
+}

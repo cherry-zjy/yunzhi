@@ -1,9 +1,11 @@
 {
   "pages":[
+    
 
     "pages/index/index",
     "pages/index/search/search",
     "pages/index/order/order",
+    "pages/index/allorder/allorder",
     "pages/index/gooddetail/gooddetail",
     "pages/index/eva/eva",
     "pages/index/msg/msg",

@@ -50,5 +50,10 @@ Page({
     wx.navigateTo({
       url: 'msg/msg'
     })
+  },
+  alldetail(){
+    wx.navigateTo({
+      url: 'allorder/allorder'
+    })
   }
 })

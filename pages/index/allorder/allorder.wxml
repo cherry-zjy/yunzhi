@@ -1,0 +1,8 @@
+<!--pages/index/allorder/allorder.wxml-->
+<view wx:for="{{List}}" wx:key="index">
+  <view class='list-info'>
+    <image class='list-img' src="{{item.Image}}"></image>
+    <view class='list-name'>{{item.Name}}</view>
+    <image class='icon-list' src='../../../img/enter_arrow.png'></image>
+  </view>
+</view>
