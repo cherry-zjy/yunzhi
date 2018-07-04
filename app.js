@@ -1,5 +1,8 @@
 //app.js
 App({
+  mainUrl: "http://192.168.1.151/CloudFinger/",
+  ajax: require('utils/ajax.js'),
+  token: "",
   onLaunch: function () {
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []

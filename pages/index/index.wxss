@@ -34,13 +34,15 @@
 }
 /* 分类 */
 .title-btnbox {
-  display: flex;
+  float:left;
+  width: 100%;
 }
 
 .title-btnbox .title-btn {
   width: 33.33%;
   text-align: center;
   margin-top: 20rpx;
+  float:left;
 }
 
 .title-btnbox .title-btn .title-imgbtn {
@@ -65,6 +67,8 @@
   height: 20rpx;
   background-color: #EEEEEE;
   margin-top: 20rpx;
+  float:left;
+  width: 100%;
 }
 /* 仪器列表 */
 .recommend{
@@ -73,6 +77,8 @@
   display:flex;
   align-items: center;
   justify-content: center;
+  float:left;
+  width: 100%;
 }
 .recommend image{
   width: 60rpx;

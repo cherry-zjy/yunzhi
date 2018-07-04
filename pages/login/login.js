@@ -16,6 +16,7 @@ Page({
     xieyi: false
   },
   formSubmit: function (e) {
+    console.log(e.detail.value.Phone)
     var that = this
     if (e.detail.value.Phone.length == 0 || e.detail.value.code.length == 0) {
       that.setData({
@@ -26,7 +27,8 @@ Page({
           tip: '',
         })
       }, 1000)
-    } else if (e.detail.value.Phone.length !== 11 || !(/^1[34578]\d{9}$/.test(e.detail.value.Phone))) {
+    // } else if (e.detail.value.Phone.length !== 11 || !(/^1[34578]\d{9}$/.test(e.detail.value.Phone))) {
+    } else if (e.detail.value.Phone.length !== 11) {
       that.setData({
         tip: '提示：请输入正确的手机号！',
       })
@@ -56,7 +58,7 @@ Page({
             // 发起网络请求
             app.ajax({
               method: 'POST',
-              url: app.mainUrl + 'api/User/Register',
+              url: app.mainUrl + 'api/AppRegisterLogin/RegisterLogin',
               data: {
                 "Phone": that.data.Phone,
                 "Code": that.data.code,
@@ -70,11 +72,20 @@ Page({
                 if (res.data.Status == 1) {
                   wx.setStorage({
                     key: 'token',
-                    data: res.data.Result,
+                    data: res.data.Result.Token,
                     success: function () {
-                      wx.navigateBack()
+                      wx.setStorage({
+                        key: 'type',
+                        data: res.data.Result.Type,
+                        success: function () {
+                          wx.navigateTo({
+                            url: '../index/index'
+                          })
+                        }
+                      })
                     }
                   })
+                  
                 } else {
                   wx.showModal({
                     showCancel: false,

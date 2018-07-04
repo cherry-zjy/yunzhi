@@ -1,61 +1,44 @@
 <!--index.wxml-->
 <view class="page-section-spacing search-box">
   <view class="serachbox">
-    <input class='search' bindtap='gotosearch' placeholder='输入您想查找的内容' disabled="true" bindtap='search'></input>
+    <input class='search' placeholder='输入您想查找的内容' disabled="true" bindtap='search'></input>
     <image class='search-icon' src='../../img/sy_search@2x.png'></image>
   </view>
 </view>
 
-<swiper indicator-dots="{{indicatorDots}}"
-  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-  <block wx:for="{{imgUrls}}">
+<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+  <block wx:for="{{imgUrls}}" wx:key="{{index}}">
     <swiper-item>
-      <image src="{{item}}" class="slide-image" height="150"/>
+      <image src="{{mainurl + item.Imaage}}" class="slide-image" height="150" data-url='{{item.Url}}' bindtap='gotobanner' />
     </swiper-item>
   </block>
 </swiper>
 
-<view class='order-list'>
-    <view class='title-btnbox'>
-      <view class='title-btn' bindtap='orderdetail'>
-        <image class='title-imgbtn' src='../../img/sy_material@2x.png'></image>
-        <view class='title-name'>实验室家具</view>
-      </view>
-      <view class='title-btn' bindtap='orderdetail'>
-        <image class='title-imgbtn' src='../../img/sy_material@2x.png'></image>
-        <view class='title-name'>实验室家具</view>
-      </view>
-      <view class='title-btn' bindtap='orderdetail'>
-        <image class='title-imgbtn' src='../../img/sy_material@2x.png'></image>
-        <view class='title-name'>实验室家具</view>
-      </view>
+<view class='title-btnbox'>
+  <block wx:for="{{orderlist}}" wx:key="{{index}}">
+    <view class='title-btn' bindtap='orderdetail'>
+      <image class='title-imgbtn' src='{{item.Image}}'></image>
+      <view class='title-name'>{{item.BrandName}}</view>
     </view>
+  </block>
+  <view class='title-btn' bindtap='alldetail'>
+    <image class='title-imgbtn' src='../../img/sy_add@2x.png'></image>
+    <view class='title-name'>更多分类</view>
   </view>
-  <view class='order-list'>
-    <view class='title-btnbox'>
-      <view class='title-btn' bindtap='orderdetail'>
-        <image class='title-imgbtn' src='../../img/sy_material@2x.png'></image>
-        <view class='title-name'>实验室家具</view>
-      </view>
-      <view class='title-btn' bindtap='orderdetail'>
-        <image class='title-imgbtn' src='../../img/sy_material@2x.png'></image>
-        <view class='title-name'>实验室家具</view>
-      </view>
-      <view class='title-btn' bindtap='alldetail'>
-        <image class='title-imgbtn' src='../../img/sy_add@2x.png'></image>
-        <view class='title-name'>更多分类</view>
-      </view>
-    </view>
+</view>
+<!-- </view> -->
+<view class='greyline'></view>
+<view class='recommend'>
+  <image src='../../img/sy_like@2x.png'></image>
+  <text>推荐仪器</text>
+</view>
+<view class='goods-list' wx:for="{{goodsList}}" wx:key="index" data-id='{{item.ID}}' bindtap='goodsDetail'>
+  <view>
+    <image class='goods-img' src='{{mainurl + item.Image}}'></image>
   </view>
-  <view class='greyline'></view>
-  <view class='recommend'><image src='../../img/sy_like@2x.png'></image><text>推荐仪器</text></view>
-  <view class='goods-list' wx:for="{{goodsList}}" wx:key="index" data-id='{{item.ID}}' bindtap='goodsDetail'>
-    <view>
-      <image class='goods-img' src='{{item.ImageUrl}}'></image>
-    </view>
-    <view class='goods-info'>
-      <view class='goods-name'>{{item.Name}}</view>
-      <view class='goods-price'>{{item.Company}}</view>
-    </view>
+  <view class='goods-info'>
+    <view class='goods-name'>{{item.Name}}</view>
+    <view class='goods-price'>{{item.BrandName}}</view>
   </view>
-  <image src='../../img/sy_consulting@2x.png' class='icon' bindtap='cuiban'></image>
+</view>
+<image src='../../img/sy_consulting@2x.png' class='icon' bindtap='cuiban'></image>
