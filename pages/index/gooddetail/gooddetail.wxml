@@ -1,12 +1,12 @@
 <!--pages/index/gooddetail/gooddetail.wxml-->
-<image src='{{List.Image}}' class='good-image'></image>
+<image src='{{mainurl + List.Image}}' class='good-image'></image>
 <view class='detailbox'>
   <view class='good-name'>{{List.Name}}</view>
   <view class='list-moneybox'>
-    <view wx:for="{{List.Star}}">
+    <view wx:for="{{List.Stars}}">
       <image src='../../../img/pj_star@2x.png' class='star-icon'></image>
     </view>
-    <view wx:for="{{List.Nostar}}">
+    <view wx:for="{{5-List.Stars}}">
       <image src='../../../img/pj_star_no@2x.png' class='star-icon'></image>
     </view>
     <text class='list-money'>{{List.Star}}</text>
@@ -27,55 +27,49 @@
 <view wx:if="{{check == 'detail'}}" class='gooddetailbox'>
   <view class='title'>产品参数</view>
   <view class="table">
-    <view class="onetr">
-      <view class="one-td3">合同说明</view>
-      <view class="one-td4">保险说明</view>
-    </view>
-    <view class="onetr">
-      <view class="one-td3">工资发放</view>
-      <view class="one-td4">保险说明</view>
-    </view>
-    <view class="onetr">
-      <view class="one-td3">保险说明</view>
-      <view class="one-td4">保险说明</view>
-    </view>
-    <view class="onetr">
-      <view class="one-td3">温馨提示</view>
-      <view class="one-td4">保险说明</view>
+    <view class="onetr" wx:for="{{spectype}}" wx:key="index">
+      <view class="one-td3">{{item.type}}</view>
+      <view class="one-td4">{{item.value}}</view>
     </view>
   </view>
 </view>
 <view class='greyline' wx:if="{{check == 'detail'}}"></view>
 
-<view class='store-agent' wx:if="{{check == 'detail'}}">
+<view class='store-agent' wx:if="{{check == 'detail'}}" wx:for="{{userlist}}" wx:key="index">
   <view class='agent-box'>
     <view class='agent-msg'>
       <image class="store-icon" src='../../../../img/apxq_head_portrait@2x.png'></image>
-      <view class='store-agentname'>{{store.JJName}}</view>
     </view>
   </view>
-  <view bindtap='makePhoneCall' class='agent-box detail'>
-    <view class='agent-name'>王经理
-      <text class='agent-phone'>18258773565</text>
+  <view class='agent-box detail'>
+    <view class='agent-name'>{{item.Name}}
+      <text class='agent-phone' bindtap='makePhoneCall' data-phone='{{item.Phone}}'>{{item.Phone}}</text>
     </view>
-    <view class='agent-add'>杭州
-      <text class='agent-brand'>牌子牌子牌子</text>
+    <view class='agent-add'>{{item.Region}}
+      <text class='agent-brand'>{{item.Brand}}</text>
     </view>
   </view>
 </view>
 
 <view class="section foot">
   <view class="flex-wrp flexfoot" style="flex-direction:row;">
-    <view class="flex-item floow" bindtap='eva'>
+    <!-- <view class="flex-item floow" bindtap='eva'>
       <view class='foot-text'>评论</view>
-    </view>
+    </view> -->
 
-    <view class="flex-item attend" bindtap='makePhoneCall'>
-      <view>联系他</view>
+    <view class="flex-item attend" bindtap='eva'>
+      <view>评论</view>
     </view>
   </view>
 </view>
 <!-- 评价 -->
+<!--wxs语法过滤器  -->
+<wxs module="utilTitle">
+  var sub = function(val) {
+    return val.substring(0,10)
+  }
+  module.exports.sub = sub;
+</wxs>
 <view class='evabox'>
 <view class="flex-wrp eva" wx:if="{{check == 'eva'}}" style="flex-direction:row;" wx:for="{{evalist}}" wx:key="index">
   <view class='eva-name'>{{item.Name}}</view>
@@ -83,12 +77,11 @@
     <view wx:for="{{item.Star}}">
       <image src='../../../img/pj_star@2x.png' class='star-icon'></image>
     </view>
-    <view wx:for="{{item.Nostar}}">
+    <view wx:for="{{5-item.Star}}">
       <image src='../../../img/pj_star_no@2x.png' class='star-icon'></image>
     </view>
-    <text class='list-money'>{{item.Star}}</text>
   </view>
-  <view class='content'>{{item.Content}}</view>
-  <view class='eva-time'>{{item.Time}}</view>
+  <view class='content'>{{item.commontContent}}</view>
+  <view class='eva-time'>{{utilTitle.sub(item.Time)}}</view>
 </view>
 </view>

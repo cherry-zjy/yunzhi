@@ -1,36 +1,104 @@
 // pages/index/gooddetail/gooddetail.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    List:{
-      Image:'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-      Star:4,
-      Nostar:1,
-      Name: '全自动宝色谱展开仪NIFETK-2E',
-    },
+    detailid:'',
+    List:[],
+    spectype:[],
+    userlist:[],
     check:'detail',
-    evalist:[{
-      Name:'用户',
-      Star: 4,
-      Nostar: 1,
-      Time: '2018-06-14',
-      Content:'很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒',
-    },{
-      Name: '用户',
-      Star: 4,
-      Nostar: 1,
-      Time: '2018-06-14',
-      Content: '很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒',
-      }, {
-        Name: '用户',
-        Star: 4,
-        Nostar: 1,
-        Time: '2018-06-14',
-        Content: '很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒很棒',
-      }]
+    pageIndex: 1,
+    IsNext: false,
+    next: false,//没有数据时弹框只提醒一次
+    evalist:[]
+  },
+  getInfo(){
+    var that = this;
+    app.ajax({
+      method: 'get',
+      url: app.mainUrl + 'api/AppProductDetail/GetProductDetail',
+      data: {
+        "prodID": that.data.detailid,
+      },
+      success: function (res) {
+        wx.hideLoading()
+        if (res.data.Status == 1) {
+          that.setData({
+            List: res.data.Result,
+            spectype: res.data.Result.spectype,
+            userlist: res.data.Result.userlist,
+          })
+          console.log(that.data.userlist)
+        } else if (res.data.Status == 40002) {
+          wx.showModal({
+            title: '提示',
+            content: res.data.Result,
+            success: function (res) {
+              if (res.confirm) {
+                wx.removeStorage({
+                  key: 'token',
+                  success: function (res) {
+                    console.log("删除token，保证只提醒一次")
+                  },
+                })
+                wx.navigateTo({
+                  url: '../login/login',
+                })
+              } else if (res.cancel) {
+                console.log('用户点击取消')
+              }
+            }
+          })
+        } else {
+          wx.showModal({
+            showCancel: false,
+            title: '提示',
+            content: res.data.Result,
+          })
+        }
+      },
+      error: function () {
+        wx.hideLoading()
+      }
+    })
+  },
+  getComment(){
+    var that = this
+    app.ajax({
+      method: 'get',
+      url: app.mainUrl + 'api/AppProductComment/CommontList',
+      data: {
+        prodID: that.data.detailid,
+        pageIndex: Number(that.data.pageIndex),
+        pageSize: 10
+      },
+      success: function (res) {
+        wx.hideLoading()
+        if (res.data.Status == 1) {
+          that.data.evalist = that.data.evalist.concat(res.data.Result.dataList)
+          that.setData({
+            evalist: that.data.evalist,
+          })
+          that.data.pageIndex = that.data.pageIndex + 1
+          that.setData({
+            IsNext: res.data.Result.IsNext || false
+          })
+        } else {
+          wx.showModal({
+            showCancel: false,
+            title: '提示',
+            content: res.data.Result,
+          })
+        }
+      },
+      error: function () {
+        wx.hideLoading()
+      }
+    })
   },
   changedetail(){
     this.setData({
@@ -43,10 +111,10 @@ Page({
     })
   },
   // 打电话
-  makePhoneCall: function () {
-    var that = this;
+  makePhoneCall: function (event) {
+    var phone = event.currentTarget.dataset.phone;
     wx.makePhoneCall({
-      phoneNumber: '18258773565',
+      phoneNumber: phone,
       success: function () {
         console.log("成功拨打电话")
       }
@@ -62,14 +130,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.setData({
+      detailid: options.id
+    })
+    console.log(this.data.detailid)
+    this.getInfo();
+    this.getComment();
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+    this.setData({
+      mainurl: app.mainUrl,
+    })
   },
 
   /**
@@ -104,7 +179,26 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+    var that = this;
+    if (that.data.check == "eva"){
+      if (that.data.IsNext) {
+        if (that.data.pageIndex == 1) {
+          that.setData({
+            pageIndex: 2
+          })
+        }
+        that.getComment()
+      } else {
+        if (that.data.next == false) {//没有数据时弹框只提醒一次
+          that.setData({
+            next: true
+          })
+          wx.showToast({
+            title: '没有更多数据了',
+          })
+        }
+      }
+    }
   },
 
   /**

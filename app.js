@@ -1,6 +1,6 @@
 //app.js
 App({
-  mainUrl: "http://192.168.1.151/CloudFinger/",
+  mainUrl: "http://192.168.1.144/CloudFinger/",
   ajax: require('utils/ajax.js'),
   token: "",
   onLaunch: function () {

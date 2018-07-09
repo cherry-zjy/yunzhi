@@ -16,8 +16,8 @@ Page({
     goodsList: []
   },
   getBanner() {
-    var that = this
-    app.ajax({
+    var that = this;
+     app.ajax({
       method: 'get',
       url: app.mainUrl + 'api/AppHomePage/GetBannerList',
       data: {
@@ -47,11 +47,8 @@ Page({
     var that = this
     app.ajax({
       method: 'get',
-      url: app.mainUrl + 'api/AppHomePage/CommendInstrument',
-      data: {
-        pageIndex: 1,
-        pageSize: 5
-      },
+      url: app.mainUrl + 'api/AppProductSort/TypeList',
+      data: {},
       success: function(res) {
         wx.hideLoading()
         if (res.data.Status == 1) {
@@ -92,13 +89,13 @@ Page({
       success: function(res) {
         wx.hideLoading()
         if (res.data.Status == 1) {
-          that.data.goodsList = that.data.goodsList.concat(res.data.Result)
+          that.data.goodsList = that.data.goodsList.concat(res.data.Result.data)
           that.setData({
             goodsList: that.data.goodsList,
           })
           that.data.pageIndex = that.data.pageIndex + 1
           that.setData({
-            IsNext: res.data.Result[0].IsNext || false
+            IsNext: res.data.Result.data[0].IsNext || false
           })
         } else {
           wx.showModal({
@@ -140,9 +137,10 @@ Page({
       url: 'allorder/allorder'
     })
   },
-  goodsDetail() {
+  goodsDetail(event) {
+    var id = event.currentTarget.dataset.id
     wx.navigateTo({
-      url: 'gooddetail/gooddetail'
+      url: 'gooddetail/gooddetail?id=' + id,
     })
   },
   /**
@@ -156,6 +154,7 @@ Page({
 
     this.getBanner();
     this.getInfo();
+    this.commend();
   },
 
   /**
@@ -204,13 +203,13 @@ Page({
         wx.hideNavigationBarLoading() //完成停止加载
         wx.stopPullDownRefresh() //停止下拉刷新
         if (res.data.Status == 1) {
-          that.data.goodsList = that.data.goodsList.concat(res.data.Result)
+          that.data.goodsList = that.data.goodsList.concat(res.data.Result.data)
           that.setData({
             goodsList: that.data.goodsList,
           })
           that.data.pageIndex = that.data.pageIndex + 1
           that.setData({
-            IsNext: res.data.Result[0].IsNext || false
+            IsNext: res.data.Result.data[0].IsNext || false
           })
         } else {
           wx.showModal({
