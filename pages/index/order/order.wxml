@@ -11,24 +11,29 @@
     <view class="flex-item sort {{ascending? 'on' : ''}}" bindtap="sort">品牌筛选</view>
   </view>
 </view>
-
+<!--wxs语法过滤器  -->
+<wxs module="utilTitle">
+  var sub = function(val) {
+    return parseInt(val)
+  }
+  module.exports.sub = sub;
+</wxs>
   <view class="section list">
   <view class=" flex-wrp" style="flex-direction:row" wx:for="{{datalist}}" data-id="{{item.ID}}" bindtap='goodDetail'>
     <view class="flex-item img">
-      <image src='{{item.Image}}'></image>
+      <image src='{{mainurl + item.Image}}'></image>
     </view>
     <view class="flex-item detail">
     <view class='list-name'>{{item.Name}}</view>
     <view class='list-moneybox'>
-      <view wx:for="{{item.Star}}" wx:for-item="items" wx:key="index">
+      <view wx:for="{{utilTitle.sub(item.Star)}}" wx:for-item="items" wx:key="index">
         <image src='../../../img/pj_star@2x.png' class='star-icon'></image>
       </view>
-       <view wx:for="{{item.Nostar}}" wx:for-item="items" wx:key="index">
+       <view wx:for="{{5-utilTitle.sub(item.Star)}}" wx:for-item="items" wx:key="index">
         <image src='../../../img/pj_star_no@2x.png' class='star-icon'></image>
       </view>
-      <text class='list-money'>{{item.Star}}</text>
     </view>
-    <view class='list-other'>{{item.Company}}</view>
+    <view class='list-other'>{{item.BrandName}}</view>
     </view>
   </view>
   </view>  

@@ -121,8 +121,21 @@ Page({
     })
   },
   eva(){
-    wx.navigateTo({
-      url: '../eva/eva'
+    var that = this;
+    wx.getStorage({
+      key: 'token',
+      success: function (res) {
+        wx.navigateTo({
+          url: '../eva/eva?id=' + that.data.detailid
+        })
+      },
+      fail: function (res) {
+        wx.navigateTo({
+          url: '../../login/login'
+        })
+      },
+      complete: function (res) {
+      },
     })
   },
 
@@ -133,7 +146,6 @@ Page({
     this.setData({
       detailid: options.id
     })
-    console.log(this.data.detailid)
     this.getInfo();
     this.getComment();
   },

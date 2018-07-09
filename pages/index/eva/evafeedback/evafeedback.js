@@ -5,17 +5,22 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    detailid:'',
   },
   back() {
-    wx.navigateBack({});
+    var that = this;
+    wx.navigateTo({
+      url: '../../gooddetail/gooddetail?id=' + that.data.detailid,
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.setData({
+      detailid: options.id
+    })
   },
 
   /**

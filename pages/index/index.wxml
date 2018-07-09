@@ -16,7 +16,7 @@
 
 <view class='title-btnbox'>
   <block wx:for="{{orderlist}}" wx:key="{{index}}">
-    <view class='title-btn' bindtap='orderdetail'>
+    <view class='title-btn' bindtap='orderdetail' data-id='{{item.ID}}'>
       <image class='title-imgbtn' src='{{mainurl + item.Image}}'></image>
       <view class='title-name'>{{item.Type}}</view>
     </view>

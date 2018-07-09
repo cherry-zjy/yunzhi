@@ -121,10 +121,10 @@ Page({
       url: 'search/search'
     })
   },
-  orderdetail() {
+  orderdetail(event) {
     var id = event.currentTarget.dataset.id
     wx.navigateTo({
-      url: "order/order?url=" + id,
+      url: "order/order?id=" + id,
     })
   },
   cuiban() {
