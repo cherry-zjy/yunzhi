@@ -24,7 +24,7 @@ Page({
   },
   search(){
     wx.navigateTo({
-      url: '../order/order?text=' + this.data.Text + '&type=' + this.data.array1[this.data.index].ID
+      url: '../order/order?text=' + this.data.Text + '&id=' + this.data.array1[this.data.index].ID
     })
   },
   getInfo(){

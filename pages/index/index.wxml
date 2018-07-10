@@ -41,4 +41,4 @@
     <view class='goods-price'>{{item.BrandName}}</view>
   </view>
 </view>
-<image src='../../img/sy_consulting@2x.png' class='icon' bindtap='cuiban'></image>
+<image src='../../img/sy_consulting@2x.png' class='icon' bindtap='cuiban' wx:if="msgbox"></image>

@@ -11,6 +11,7 @@ Page({
     interval: 5000,
     duration: 1000,
     pageIndex: 1,
+    msgbox:false,
     IsNext:false,
     next:false,//没有数据时弹框只提醒一次
     goodsList: []
@@ -147,21 +148,45 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.setData({
-      mainurl: app.mainUrl,
-      pageIndex: 1
-    })
+    var tt = this;
+    wx.getStorage({
+      key: 'type',
+      success: function (res) {
+        if (res.data == 0 || res.data == 1){
+          tt.setData({
+            msgbox: false
+          })
+        }else{
+          tt.setData({
+            msgbox: true
+          })
+        }
+      },
+      fail: function (res) {
+        if (options.isvisitor){
 
-    this.getBanner();
-    this.getInfo();
-    this.commend();
+        }else{
+          wx.navigateTo({
+            url: '../login/login'
+          })
+        }
+      },
+      complete: function (res) {
+      },
+    })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-
+    this.setData({
+      mainurl: app.mainUrl,
+      pageIndex: 1
+    })
+    this.getBanner();
+    this.getInfo();
+    this.commend();
   },
 
   /**

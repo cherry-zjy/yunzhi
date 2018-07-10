@@ -8,6 +8,7 @@ Page({
   data: {
     detailid:'',
     state:0,
+    sear:'',
     pageIndex: 1,
     IsNext: false,
     next: false,//没有数据时弹框只提醒一次
@@ -36,9 +37,10 @@ Page({
       that.getInfo()
     }
   },
-  goodDetail(){
+  goodDetail(event){
+    var id = event.currentTarget.dataset.id
     wx.navigateTo({
-      url: '../gooddetail/gooddetail'
+      url: '../gooddetail/gooddetail?id='+id
     })
   },
   getInfo(){
@@ -49,7 +51,7 @@ Page({
       data: {
         pageIndex: Number(that.data.pageIndex),
         pageSize: 10,
-        sear:-1,
+        sear: that.data.sear == "" ? "-1" : that.data.sear,
         sortID: that.data.detailid,
         order: that.data.state
       },
@@ -89,9 +91,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
     this.setData({
       mainurl: app.mainUrl,
-      detailid: options.id
+      detailid: options.id,
+      sear: options.text == undefined ? '' : options.text
     })
     this.getInfo()
   },

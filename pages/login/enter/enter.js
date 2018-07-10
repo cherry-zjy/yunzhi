@@ -14,7 +14,7 @@ Page({
   },
   youke() {
     wx.navigateTo({
-      url: '../../index/index?id=' + 1
+      url: '../../index/index?isvisitor=true'
     })
   },
 

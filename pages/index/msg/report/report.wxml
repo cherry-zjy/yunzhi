@@ -1,43 +1,59 @@
 <!--pages/index/msg/report/report.wxml-->
 <view class="page-section-spacing search-box">
-  <view class="serachbox">
-    <input class='search' bindtap='gotosearch' placeholder='请输入物料描述的关键字' bindtap='search'></input>
+  <!-- <view class="serachbox">
+    <input class='search' placeholder='请输入物料描述的关键字' bindinput="Changeinput"></input>
     <image class='search-icon' src='../../../../img/sy_search@2x.png'></image>
-  </view>
+  </view> -->
+  <view class="serachbox">
+      <input class='search' placeholder='请输入物料描述的关键字' bindinput="Changeinput"></input>
+      <image class='search-icon' src='../../../../img/sy_search@2x.png'></image>
+      <view class="serachimgbox" bindtap='search'>
+        搜索
+      </view>
+    </view>
 </view>
+<!--wxs语法过滤器  -->
+<wxs module="utilTitle">
+  var sub = function(val) {
+    return val.substring(0,10)
+  }
+  module.exports.sub = sub;
+</wxs>
 <view wx:for="{{list}}" wx:key="index" class='orderbox'>
   <view class='order-number'>
-    <view class='order-no'>需求单号：{{item.No}}</view>
-    <view class="order-status {{item.Status == '催办接受'? 'cb' : ''}}">{{item.Status}}</view>
+    <view class='order-no'>需求单号：{{item.OddNumber}}</view>
+    <view class="order-status {{item.State == 1? 'cb' : ''}}">{{item.State == 1? '催办接受' : '未处理'}}</view>
   </view>
   <view class='order-dec'>
-    <view class='order-description'>物料描述：{{item.dec}}</view>
+    <view class='order-description'>物料描述：{{item.MaterIntroduce}}</view>
     <view class='order-description'>接收人：{{item.name}}</view>
   </view>
   <view class='order-other'>
     <view class='orderbzbox'>
-      <view class='order-bz'>备注：{{item.bz}}</view>
-      <view class='order-time' wx:if="{{item.Status == '催办接受'}}">{{item.Time}}</view>
-    </view>
-    <view class='orderbzbox'>
-      <view class='order-bz'>王师傅：{{item.bz}}</view>
-      <view class='order-time' wx:if="{{item.Status == '催办接受'}}">{{item.Time}}</view>
-    </view>
-    <view class='orderbzbox'>
-      <view class='order-bz'>李师傅：{{item.bz}}</view>
-      <view class='order-time' wx:if="{{item.Status == '催办接受'}}">{{item.Time}}</view>
-    </view>
-    <view class='orderbzbox'>
       <view class='order-bz'>刘师傅：{{item.bz}}</view>
-      <view class='order-time' wx:if="{{item.Status == '催办接受'}}">{{item.Time}}</view>
+      <view class='order-time'>{{utilTitle.sub(item.CreationDate)}}</view>
     </view>
   </view>
   <view class='order-kucun'>
     <view class='order-kczs'>库存指示：
-      <view wx:if="{{item.Status == '未处理'}}" class='order-point cb'></view>
-      <view class='order-point ycb' wx:if="{{item.Status == '催办接受'}}"></view>
+      <view wx:if="{{item.Stock == 0}}" class='order-point cb'></view>
+      <view class='order-point ycb' wx:if="{{item.Stock == 1}}"></view>
     </view>
-    <button wx:if="{{item.Status == '未处理'}}" class='order-btn cb' bindtap='handle'>催办</button>
-    <button wx:if="{{item.Status == '催办接受'}}" class='order-btn ycb' bindtap='handle'>已催办</button>
+    <button wx:if="{{item.State == 0}}" class='order-btn cb' bindtap="showDialogBtn" data-id="{{item.ID}}">催办</button>
+    <button wx:if="{{item.State == 1}}" class='order-btn ycb'>已催办</button>
+  </view>
+</view>
+<!--弹窗-->
+<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+<view class="modal-dialog" wx:if="{{showModal}}" animation="{{animationData}}">
+  <view class="modal-title">备注</view>
+  <view class="modal-content">
+    <view class="modal-input">
+      <textarea auto-focus="true" style="height: 6em" bindinput="ChangeName"/>
+    </view>
+  </view>
+  <view class="modal-footer">
+    <view class="btn-cancel" bindtap="onCancel" data-status="cancel">取消</view>
+    <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
   </view>
 </view>
