@@ -4,8 +4,8 @@
   <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" class='picker'>
       <text>{{array[index]}}</text><image class='picker-icon' src='../../../img/lsjl_arrow@2x.png'></image>
     </picker>
-    <view class='inputbox'><input class='search' bindtap='gotosearch' placeholder='请输入物料描述的关键字' bindtap='search'></input>
+    <view class='inputbox'><input class='search' placeholder='请输入物料描述的关键字' bindinput="Changeinput"></input>
     <image class='search-icon' src='../../../img/sy_search@2x.png'></image></view>
-    <view class='searchtext'>搜索</view>
+    <view class='searchtext' bindtap='search'>搜索</view>
   </view>
 </view>

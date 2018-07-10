@@ -1,33 +1,53 @@
 // pages/index/allorder/allorder.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    List: [{
-      Name: "实验室小耗材",
-      Image: '../../../img/sy_material@2x.png'
-    }, {
-      Name: "实验室小耗材",
-      Image: '../../../img/sy_material@2x.png'
-    },{
-      Name: "实验室小耗材",
-      Image: '../../../img/sy_material@2x.png'
-    },{
-      Name: "实验室小耗材",
-      Image: '../../../img/sy_material@2x.png'
-    },{
-      Name: "实验室小耗材",
-      Image: '../../../img/sy_material@2x.png'
-    }]
+    List: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
+  commend() {
+    var that = this
+    app.ajax({
+      method: 'get',
+      url: app.mainUrl + 'api/AppProductSort/TypeList',
+      data: {},
+      success: function (res) {
+        wx.hideLoading()
+        if (res.data.Status == 1) {
+          that.setData({
+            List: res.data.Result
+          })
+        } else {
+          wx.showModal({
+            showCancel: false,
+            title: '提示',
+            content: res.data.Result,
+          })
+        }
+      },
+      error: function () {
+        wx.hideLoading()
+      }
+    })
+  },
+  orderdetail(event) {
+    var id = event.currentTarget.dataset.id
+    wx.navigateTo({
+      url: "../order/order?id=" + id,
+    })
+  },
   onLoad: function(options) {
-
+    this.setData({
+      mainurl: app.mainUrl,
+    })
+    this.commend()
   },
 
   /**

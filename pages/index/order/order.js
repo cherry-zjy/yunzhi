@@ -7,7 +7,7 @@ Page({
    */
   data: {
     detailid:'',
-    state:'null',
+    state:0,
     pageIndex: 1,
     IsNext: false,
     next: false,//没有数据时弹框只提醒一次
@@ -15,18 +15,25 @@ Page({
   },
   onPickHeaderClick(){
     var that = this;
-    if (that.data.state == 'null'){
+    // if (that.data.state == 'null'){
+    //   that.setData({
+    //     state: 'top',
+    //   })
+    // } else 
+    if (that.data.state == '1'){
       that.setData({
-        state: 'top',
+        state: 0,
+        pageIndex: 1,
+        datalist:[],
       })
-    } else if (that.data.state == 'top'){
-      that.setData({
-        state: 'bottom',
-      })
+      that.getInfo()
     }else{
       that.setData({
-        state: 'null',
+        state: 1,
+        pageIndex: 1,
+        datalist: [],
       })
+      that.getInfo()
     }
   },
   goodDetail(){
@@ -43,7 +50,8 @@ Page({
         pageIndex: Number(that.data.pageIndex),
         pageSize: 10,
         sear:-1,
-        sortID: that.data.detailid
+        sortID: that.data.detailid,
+        order: that.data.state
       },
       success: function (res) {
         wx.hideLoading()
@@ -54,7 +62,7 @@ Page({
           })
           that.data.pageIndex = that.data.pageIndex + 1
           that.setData({
-            IsNext: res.data.Result.data[0].IsNext || false
+            IsNext: res.data.Result.IsNext || false
           })
         } else {
           wx.showModal({
@@ -67,6 +75,13 @@ Page({
       error: function () {
         wx.hideLoading()
       }
+    })
+  },
+  sort(){
+    wx.showModal({
+      showCancel: false,
+      title: '提示',
+      content: "该功能暂未开放哦"
     })
   },
 
