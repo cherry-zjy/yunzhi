@@ -1,12 +1,24 @@
 <!--pages/index/gooddetail/gooddetail.wxml-->
 <image src='{{mainurl + List.Image}}' class='good-image'></image>
+<!--wxs语法过滤器  -->
+<wxs module="utilTitle">
+  var sub = function(val) {
+    return val.substring(0, 10)
+  }
+  var star = function(val) {
+    return parseInt(val)
+    console.log(vai)
+  }
+  module.exports.star = star;
+  module.exports.sub = sub;
+</wxs>
 <view class='detailbox'>
   <view class='good-name'>{{List.Name}}</view>
   <view class='list-moneybox'>
-    <view wx:for="{{List.Stars}}">
+    <view wx:for="{{utilTitle.star(List.Stars)}}">
       <image src='../../../img/pj_star@2x.png' class='star-icon'></image>
     </view>
-    <view wx:for="{{5-List.Stars}}">
+    <view wx:for="{{5-utilTitle.star(List.Stars)}}">
       <image src='../../../img/pj_star_no@2x.png' class='star-icon'></image>
     </view>
     <text class='list-money'>{{List.Star}}</text>
@@ -63,25 +75,19 @@
   </view>
 </view>
 <!-- 评价 -->
-<!--wxs语法过滤器  -->
-<wxs module="utilTitle">
-  var sub = function(val) {
-    return val.substring(0,10)
-  }
-  module.exports.sub = sub;
-</wxs>
+
 <view class='evabox'>
-<view class="flex-wrp eva" wx:if="{{check == 'eva'}}" style="flex-direction:row;" wx:for="{{evalist}}" wx:key="index">
-  <view class='eva-name'>{{item.Name}}</view>
-  <view class='list-starbox'>
-    <view wx:for="{{item.Star}}">
-      <image src='../../../img/pj_star@2x.png' class='star-icon'></image>
+  <view class="flex-wrp eva" wx:if="{{check == 'eva'}}" style="flex-direction:row;" wx:for="{{evalist}}" wx:key="index">
+    <view class='eva-name'>{{item.Name}}</view>
+    <view class='list-starbox'>
+      <view wx:for="{{item.Star}}">
+        <image src='../../../img/pj_star@2x.png' class='star-icon'></image>
+      </view>
+      <view wx:for="{{5-item.Star}}">
+        <image src='../../../img/pj_star_no@2x.png' class='star-icon'></image>
+      </view>
     </view>
-    <view wx:for="{{5-item.Star}}">
-      <image src='../../../img/pj_star_no@2x.png' class='star-icon'></image>
-    </view>
+    <view class='content'>{{item.commontContent}}</view>
+    <view class='eva-time'>{{utilTitle.sub(item.Time)}}</view>
   </view>
-  <view class='content'>{{item.commontContent}}</view>
-  <view class='eva-time'>{{utilTitle.sub(item.Time)}}</view>
-</view>
 </view>

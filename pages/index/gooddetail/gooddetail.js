@@ -7,6 +7,7 @@ Page({
    */
   data: {
     detailid:'',
+    mainurl:'',
     List:[],
     spectype:[],
     userlist:[],
@@ -32,8 +33,7 @@ Page({
             spectype: res.data.Result.spectype,
             userlist: res.data.Result.userlist,
           })
-          console.log(that.data.userlist)
-        } else if (res.data.Status == 40002) {
+        } else if (res.data.Status == 40001) {
           wx.showModal({
             title: '提示',
             content: res.data.Result,

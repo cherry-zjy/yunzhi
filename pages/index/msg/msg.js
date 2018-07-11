@@ -1,27 +1,77 @@
 // pages/index/msg/msg.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    list: [{
-      title: '系统消息',
-      time: '2018-06-15 10:50:23',
-      content: '您收到一条新的申报'
-    }, {
-      title: '系统消息',
-      time: '2018-06-15 10:50:23',
-      content: '您收到一条新的申报您收到一条新的申报您收到一条新的申报您收到一条新的申报您收到一条新的申报您收到一条新的申报'
-    }, {
-      title: '系统消息',
-      time: '2018-06-15 10:50:23',
-      content: '您收到一条新的申报'
-    }, {
-      title: '系统消息',
-      time: '2018-06-15 10:50:23',
-      content: '您收到一条新的申报'
-    }]
+    IsNext: false,
+    next: false,//没有数据时弹框只提醒一次
+    list: [],
+    pageIndex:1,
+  },
+  getInfo() {
+    var that = this
+    wx.getStorage({
+      key: 'token',
+      success: function (res) {
+        app.ajax({
+          method: 'get',
+          url: app.mainUrl + 'api/AppHomePage/GetMessage',
+          header: {
+            "Authorization": res.data
+          },
+          data: {},
+          success: function (res) {
+            wx.hideLoading()
+            if (res.data.Status == 1) {
+              that.setData({
+                list: res.data.Result.dataList
+              })
+            } else if (res.data.Status == 40001) {
+              wx.showModal({
+                title: '提示',
+                content: res.data.Result,
+                success: function (res) {
+                  if (res.confirm) {
+                    wx.removeStorage({
+                      key: 'token',
+                      success: function (res) {
+                        console.log("删除token，保证只提醒一次")
+                      },
+                    })
+                    wx.navigateTo({
+                      url: '../../../login/login',
+                    })
+                  } else if (res.cancel) {
+                    console.log('用户点击取消')
+                  }
+                }
+              })
+            } else {
+              wx.showModal({
+                showCancel: false,
+                title: '提示',
+                content: res.data.Result,
+              })
+            }
+          },
+          error: function () {
+            wx.hideLoading()
+          }
+        })
+      },
+      fail: function (res) {
+        wx.showToast({
+          title: "获取信息失败，请重新登录"
+        })
+      },
+      complete: function (res) {
+      },
+    })
+
+
   },
   save(){
     wx.navigateTo({
@@ -33,7 +83,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    var tt = this;
+    tt.setData({
+      mainurl: app.mainUrl,
+      pageIndex: 1
+    })
+    tt.getInfo()
   },
 
   /**
@@ -75,7 +130,24 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-
+    // var that = this
+    // if (that.data.IsNext) {
+    //   if (that.data.pageIndex == 1) {
+    //     that.setData({
+    //       pageIndex: 2
+    //     })
+    //   }
+    //   that.getInfo()
+    // } else {
+    //   if (that.data.next == false) {//没有数据时弹框只提醒一次
+    //     that.setData({
+    //       next: true
+    //     })
+    //     wx.showToast({
+    //       title: '没有更多数据了',
+    //     })
+    //   }
+    // }
   },
 
   /**

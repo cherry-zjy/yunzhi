@@ -4,14 +4,14 @@
     <textarea auto-focus="true" style="height: 8em" placeholder='请输入评价内容' bindinput="Changeinput" />
   </view>
   <view class='eva-star'>
-  <view class='title'>评价星数</view>
-    <view  class="star-pos" style="display:flex;flex-direction:row;">
-            <view class="starsM  {{flag2>=1? '': 'hideStar'}}"  bindtap="changeColor11"></view>
-            <view class="starsM  {{flag2>=2? '': 'hideStar'}}"  bindtap="changeColor12"></view>
-            <view class="starsM  {{flag2>=3? '': 'hideStar'}}"  bindtap="changeColor13"></view>
-            <view class="starsM  {{flag2>=4? '': 'hideStar'}}"  bindtap="changeColor14"></view>
-            <view class="starsM  {{flag2>=5? '': 'hideStar'}}"  bindtap="changeColor15"></view>
-        </view>
+    <view class='title'>评价星数</view>
+    <view class="star-pos" style="display:flex;flex-direction:row;">
+      <view class="starsM  {{flag2>=1? '': 'hideStar'}}" bindtap="changeColor11"></view>
+      <view class="starsM  {{flag2>=2? '': 'hideStar'}}" bindtap="changeColor12"></view>
+      <view class="starsM  {{flag2>=3? '': 'hideStar'}}" bindtap="changeColor13"></view>
+      <view class="starsM  {{flag2>=4? '': 'hideStar'}}" bindtap="changeColor14"></view>
+      <view class="starsM  {{flag2>=5? '': 'hideStar'}}" bindtap="changeColor15"></view>
+    </view>
   </view>
 </view>
 <view class='footer-btn' bindtap='save'>

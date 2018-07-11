@@ -18,7 +18,7 @@
   }
   module.exports.sub = sub;
 </wxs>
-  <view class="section list">
+  <view class="section list" wx:if="{{datalist.length>=1}}">
   <view class=" flex-wrp" style="flex-direction:row" wx:for="{{datalist}}" data-id="{{item.ID}}" bindtap='goodDetail'>
     <view class="flex-item img">
       <image src='{{mainurl + item.Image}}'></image>
@@ -37,3 +37,6 @@
     </view>
   </view>
   </view>  
+  <view wx:else style='text-align: center'>
+    <image src='../../../img/pjcg_evaluation_success@2x.png' class='nullicon'></image>
+  </view>

@@ -97,3 +97,9 @@
   width: 40rpx;
   height: 40rpx;
 }
+
+.nullicon{
+  width: 500rpx;
+  height: 500rpx;
+  margin-top: 50rpx;
+}

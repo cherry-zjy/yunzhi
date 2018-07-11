@@ -35,40 +35,74 @@ Page({
   },
   getInfo() {
     var that = this
-    app.ajax({
-      method: 'get',
-      url: app.mainUrl + 'api/AppDeclare/GetDeclareList',
-      data: {
-        pageIndex: Number(that.data.pageIndex),
-        pageSize: 10,
-        Token:that.data.token,
-        State:0,
-        Type: that.data.type,
-        sear: that.data.Text == '' ? '-1' : that.data.Text
-      },
+    wx.getStorage({
+      key: 'token',
       success: function (res) {
-        wx.hideLoading()
-        if (res.data.Status == 1) {
-          that.data.list = that.data.list.concat(res.data.Result.dataList)
-          that.setData({
-            list: that.data.list,
-          })
-          that.data.pageIndex = that.data.pageIndex + 1
-          that.setData({
-            IsNext: res.data.Result.IsNext || false
-          })
-        } else {
-          wx.showModal({
-            showCancel: false,
-            title: '提示',
-            content: res.data.Result,
-          })
-        }
+        app.ajax({
+          method: 'get',
+          url: app.mainUrl + 'api/AppDeclare/GetDeclareList',
+          header: {
+            "Authorization": res.data
+          },
+          data: {
+            pageIndex: Number(that.data.pageIndex),
+            pageSize: 10,
+            sear: that.data.Text == '' ? '-1' : that.data.Text
+          },
+          success: function (res) {
+            wx.hideLoading()
+            if (res.data.Status == 1) {
+              that.data.list = that.data.list.concat(res.data.Result.dataList)
+              that.setData({
+                list: that.data.list,
+              })
+              that.data.pageIndex = that.data.pageIndex + 1
+              that.setData({
+                IsNext: res.data.Result.IsNext || false
+              })
+            } else if (res.data.Status == 40001) {
+              wx.showModal({
+                title: '提示',
+                content: res.data.Result,
+                success: function (res) {
+                  if (res.confirm) {
+                    wx.removeStorage({
+                      key: 'token',
+                      success: function (res) {
+                        console.log("删除token，保证只提醒一次")
+                      },
+                    })
+                    wx.navigateTo({
+                      url: '../../../login/login',
+                    })
+                  } else if (res.cancel) {
+                    console.log('用户点击取消')
+                  }
+                }
+              })
+            } else {
+              wx.showModal({
+                showCancel: false,
+                title: '提示',
+                content: res.data.Result,
+              })
+            }
+          },
+          error: function () {
+            wx.hideLoading()
+          }
+        })
       },
-      error: function () {
-        wx.hideLoading()
-      }
+      fail: function (res) {
+        wx.showToast({
+          title: "获取信息失败，请重新登录"
+        })
+      },
+      complete: function (res) {
+      },
     })
+    
+    
   },
   /**
    * 弹窗
@@ -164,47 +198,46 @@ Page({
       mainurl: app.mainUrl,
       pageIndex: 1
     })
-    wx.getStorage({
-      key: 'token',
-      success: function (res) {
-        tt.setData({
-          token: res.data
-        });
-      },
-      fail: function (res) {
-        wx.showToast({
-          title: "获取信息失败，请重新登录"
-        })
-        setTimeout(() => {
-          wx.navigateTo({
-            url: '../../login/login'
-          })
-        }, 1500);
-      },
-      complete: function (res) {
-      },
-    })
-    wx.getStorage({
-      key: 'type',
-      success: function (res) {
-        tt.setData({
-          type: res.data
-        });
-        console.log(tt.data.type)
-      },
-      fail: function (res) {
-        wx.showToast({
-          title: "获取信息失败，请重新登录"
-        })
-        setTimeout(() => {
-          wx.navigateTo({
-            url: '../../login/login'
-          })
-        }, 1500);
-      },
-      complete: function (res) {
-      },
-    })
+    // wx.getStorage({
+    //   key: 'token',
+    //   success: function (res) {
+    //     tt.setData({
+    //       token: res.data
+    //     });
+    //   },
+    //   fail: function (res) {
+    //     wx.showToast({
+    //       title: "获取信息失败，请重新登录"
+    //     })
+    //     setTimeout(() => {
+    //       wx.navigateTo({
+    //         url: '../../login/login'
+    //       })
+    //     }, 1500);
+    //   },
+    //   complete: function (res) {
+    //   },
+    // })
+    // wx.getStorage({
+    //   key: 'type',
+    //   success: function (res) {
+    //     tt.setData({
+    //       type: res.data
+    //     });
+    //   },
+    //   fail: function (res) {
+    //     wx.showToast({
+    //       title: "获取信息失败，请重新登录"
+    //     })
+    //     setTimeout(() => {
+    //       wx.navigateTo({
+    //         url: '../../login/login'
+    //       })
+    //     }, 1500);
+    //   },
+    //   complete: function (res) {
+    //   },
+    // })
     
   },
 
@@ -260,9 +293,11 @@ Page({
         that.setData({
           next: true
         })
-        wx.showToast({
-          title: '没有更多数据了',
-        })
+        if(that.data.list.length >= 1){
+          wx.showToast({
+            title: '没有更多数据了',
+          })
+        }
       }
     }
   },

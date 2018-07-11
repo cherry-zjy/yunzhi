@@ -19,7 +19,7 @@
   }
   module.exports.sub = sub;
 </wxs>
-<view wx:for="{{list}}" wx:key="index" class='orderbox'>
+<view wx:for="{{list}}" wx:key="index" class='orderbox' wx:if="{{list.length>=1}}">
   <view class='order-number'>
     <view class='order-no'>需求单号：{{item.OddNumber}}</view>
     <view class="order-status {{item.State == 1? 'cb' : ''}}">{{item.State == 1? '催办接受' : '未处理'}}</view>
@@ -43,6 +43,9 @@
     <button wx:if="{{item.State == 1}}" class='order-btn ycb'>已催办</button>
   </view>
 </view>
+<view wx:if="{{list.length==0}}" class='page'>
+    <image src='../../../../img/pjcg_evaluation_success@2x.png' class='nullicon'></image>
+  </view>
 <!--弹窗-->
 <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
 <view class="modal-dialog" wx:if="{{showModal}}" animation="{{animationData}}">
