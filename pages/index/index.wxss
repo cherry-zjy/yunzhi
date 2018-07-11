@@ -103,17 +103,18 @@
 
 .goods-img {
   width: 100%;
-  height: 300rpx;
+  height: 353rpx;
 }
 
 .goods-info {
-  width: 325rpx;
-  padding: 20rpx 0 20rpx 20rpx;
+  padding: 10rpx;
   margin-top: -10rpx;
 }
 
 .goods-name {
   font-size: 28rpx;
+  white-space:pre-line;
+  word-break:break-all; 
 }
 
 .goods-price {

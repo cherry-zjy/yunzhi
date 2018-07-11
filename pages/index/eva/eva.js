@@ -104,9 +104,17 @@ Page({
               })
             } else {
               wx.showModal({
-                showCancel: false,
                 title: '提示',
-                content: res.data.Result,
+                content: '获取信息失败，请重新登录',
+                success: function (res) {
+                  if (res.confirm) {
+                    wx.navigateTo({
+                      url: '../../login/login',
+                    })
+                  } else if (res.cancel) {
+                    console.log('用户点击取消')
+                  }
+                }
               })
             }
           },

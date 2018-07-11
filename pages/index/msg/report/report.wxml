@@ -26,11 +26,11 @@
   </view>
   <view class='order-dec'>
     <view class='order-description'>物料描述：{{item.MaterIntroduce}}</view>
-    <view class='order-description'>接收人：{{item.name}}</view>
+    <view class='order-description' wx:for="{{item.Name}}" wx:for-item="items" wx:key="index">接收人：{{items}}<text wx:if="{{index!==item.Name.length-1}}">,</text></view>
   </view>
   <view class='order-other'>
-    <view class='orderbzbox'>
-      <view class='order-bz'>刘师傅：{{item.bz}}</view>
+    <view class='orderbzbox' wx:for="{{item.MessageBoard}}" wx:for-item="items" wx:key="index">
+      <view class='order-bz'>{{items.name}}{{item.msg}}</view>
       <view class='order-time'>{{utilTitle.sub(item.CreationDate)}}</view>
     </view>
   </view>

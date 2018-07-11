@@ -27,7 +27,7 @@ Page({
             wx.hideLoading()
             if (res.data.Status == 1) {
               that.setData({
-                list: res.data.Result.dataList
+                list: res.data.Result
               })
             } else if (res.data.Status == 40001) {
               wx.showModal({
@@ -63,15 +63,23 @@ Page({
         })
       },
       fail: function (res) {
-        wx.showToast({
-          title: "获取信息失败，请重新登录"
+        wx.showModal({
+          title: '提示',
+          content: '获取信息失败，请重新登录',
+          success: function (res) {
+            if (res.confirm) {
+              wx.navigateTo({
+                url: '../../login/login',
+              })
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
         })
       },
       complete: function (res) {
       },
     })
-
-
   },
   save(){
     wx.navigateTo({

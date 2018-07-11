@@ -7,16 +7,16 @@ Page({
    */
   data: {
     pageIndex: 1,
-    type:'',
+    type: '',
     Text: '',
-    token:'',
+    token: '',
     IsNext: false,
-    next: false,//没有数据时弹框只提醒一次
-    list:[],
+    next: false, //没有数据时弹框只提醒一次
+    list: [],
     showModal: false,
-    handleid:''
+    handleid: ''
   },
-  handle(){
+  handle() {
     wx.navigateTo({
       url: 'detail/detail'
     })
@@ -26,10 +26,10 @@ Page({
       Text: e.detail.value
     });
   },
-  search(){
+  search() {
     this.setData({
       pageIndex: 1,
-      list:[]
+      list: []
     });
     this.getInfo()
   },
@@ -37,7 +37,7 @@ Page({
     var that = this
     wx.getStorage({
       key: 'token',
-      success: function (res) {
+      success: function(res) {
         app.ajax({
           method: 'get',
           url: app.mainUrl + 'api/AppDeclare/GetDeclareList',
@@ -49,7 +49,7 @@ Page({
             pageSize: 10,
             sear: that.data.Text == '' ? '-1' : that.data.Text
           },
-          success: function (res) {
+          success: function(res) {
             wx.hideLoading()
             if (res.data.Status == 1) {
               that.data.list = that.data.list.concat(res.data.Result.dataList)
@@ -64,11 +64,11 @@ Page({
               wx.showModal({
                 title: '提示',
                 content: res.data.Result,
-                success: function (res) {
+                success: function(res) {
                   if (res.confirm) {
                     wx.removeStorage({
                       key: 'token',
-                      success: function (res) {
+                      success: function(res) {
                         console.log("删除token，保证只提醒一次")
                       },
                     })
@@ -88,26 +88,35 @@ Page({
               })
             }
           },
-          error: function () {
+          error: function() {
             wx.hideLoading()
           }
         })
       },
-      fail: function (res) {
-        wx.showToast({
-          title: "获取信息失败，请重新登录"
+      fail: function(res) {
+        wx.showModal({
+          title: '提示',
+          content: '获取信息失败，请重新登录',
+          success: function(res) {
+            if (res.confirm) {
+              wx.navigateTo({
+                url: '../../../login/login',
+              })
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
         })
       },
-      complete: function (res) {
-      },
+      complete: function(res) {},
     })
-    
-    
+
+
   },
   /**
    * 弹窗
    */
-  showDialogBtn: function (e) {
+  showDialogBtn: function(e) {
     var id = e.currentTarget.dataset.id
     this.setData({
       handleid: id,
@@ -124,7 +133,7 @@ Page({
       animationData: animation.export(),
       showModal: true
     })
-    setTimeout(function () {
+    setTimeout(function() {
       animation.translateY(0).step()
       this.setData({
         animationData: animation.export(),
@@ -139,7 +148,7 @@ Page({
     });
   },
   //关闭对话框
-  hideModal: function () {
+  hideModal: function() {
     this.setData({
       showModal: false
     });
@@ -147,52 +156,100 @@ Page({
   /**
    * 对话框取消按钮点击事件
    */
-  onCancel: function () {
+  onCancel: function() {
     this.hideModal();
   },
   /**
    * 对话框确认按钮点击事件
    */
-  onConfirm: function () {
+  onConfirm: function() {
     this.hideModal();
-    var tt = this
-    app.ajax({
-      method: 'get',
-      url: app.mainUrl + 'api/AppDeclare/ReminderRecept',
-      data: {
-        DeclareID: tt.data.handleid,
-        message: tt.data.message,
-      },
-      success: function (res) {
-        wx.hideLoading()
-        if (res.data.Status == 1) {
-          wx.showToast({
-            title: res.data.Result,
-          })
-          tt.getInfo()
-        } else {
-          wx.showModal({
-            showCancel: false,
-            title: '提示',
-            content: res.data.Result,
-          })
-        }
-      },
-      error: function () {
-        wx.hideLoading()
-        wx.showModal({
-          showCancel: false,
-          title: '提示',
-          content: "提交失败",
+    var that = this
+    wx.getStorage({
+      key: 'token',
+      success: function(res) {
+        app.ajax({
+          method: 'get',
+          url: app.mainUrl + 'api/AppDeclare/AppRecpt',
+          header: {
+            "Authorization": res.data
+          },
+          data: {
+            DecID: that.data.handleid,
+            msg: that.data.message,
+          },
+          success: function(res) {
+            wx.hideLoading()
+            if (res.data.Status == 1) {
+              wx.showToast({
+                title: res.data.Result,
+                pageIndex:1,
+                list:[]
+              })
+              setTimeout(() => {
+                that.getInfo()
+              }, 1500);
+            } else if (res.data.Status == 40001) {
+              wx.showModal({
+                title: '提示',
+                content: res.data.Result,
+                success: function(res) {
+                  if (res.confirm) {
+                    wx.removeStorage({
+                      key: 'token',
+                      success: function(res) {
+                        console.log("删除token，保证只提醒一次")
+                      },
+                    })
+                    wx.navigateTo({
+                      url: '../../../login/login',
+                    })
+                  } else if (res.cancel) {
+                    console.log('用户点击取消')
+                  }
+                }
+              })
+            } else {
+              wx.showModal({
+                showCancel: false,
+                title: '提示',
+                content: res.data.Result,
+              })
+            }
+          },
+          error: function() {
+            wx.hideLoading()
+            wx.showModal({
+              showCancel: false,
+              title: '提示',
+              content: "失败",
+            })
+          }
         })
-      }
+      },
+      fail: function(res) {
+        wx.showModal({
+          title: '提示',
+          content: '获取信息失败，请重新登录',
+          success: function(res) {
+            if (res.confirm) {
+              wx.navigateTo({
+                url: '../../login/login',
+              })
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
+        })
+      },
+      complete: function(res) {},
     })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     var tt = this;
     tt.setData({
       mainurl: app.mainUrl,
@@ -238,48 +295,48 @@ Page({
     //   complete: function (res) {
     //   },
     // })
-    
+
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
     this.getInfo();
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-  
+  onShow: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
-  
+  onHide: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
-  
+  onUnload: function() {
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
-  
+  onPullDownRefresh: function() {
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
     var that = this
     if (that.data.IsNext) {
       if (that.data.pageIndex == 1) {
@@ -289,11 +346,11 @@ Page({
       }
       that.getInfo()
     } else {
-      if (that.data.next == false) {//没有数据时弹框只提醒一次
+      if (that.data.next == false) { //没有数据时弹框只提醒一次
         that.setData({
           next: true
         })
-        if(that.data.list.length >= 1){
+        if (that.data.list.length >= 1) {
           wx.showToast({
             title: '没有更多数据了',
           })
@@ -305,7 +362,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-  
+  onShareAppMessage: function() {
+
   }
 })
