@@ -1,15 +1,15 @@
 <!--pages/index/msg/msg.wxml-->
 
 <wxs src='../../../index.wxs' module='utilTitle' />
-<view class="flex-wrp" style="flex-direction:row;" wx:for="{{list}}" wx:key="index" wx:if="{{list.length>=1}}" data-id="{{item.message.DeclareID}}" bindtap="gotodetail">
+<view class="flex-wrp" style="flex-direction:row;" wx:for="{{list}}" wx:key="index" wx:if="{{list.length>=1}}" data-id="{{item.DeclareID}}" bindtap="gotodetail">
   <!-- <view wx:for="{{item.message}}" wx:for-item="items" wx:key="index"> -->
     <view class="flex-item icon">
       <image src='../../../img/xx_announcement@2x.png'></image>
     </view>
     <view class="flex-item msg">
       <view class='msg-title'>系统消息</view>
-      <view class='msg-time'>\n{{utilTitle.sub(item.message.CreateTime)}}</view>
-      <view class='msg-content'>{{item.message.Message}}</view>
+      <view class='msg-time'>\n{{utilTitle.sub(item.CreateTime)}}</view>
+      <view class='msg-content'>{{item.Message}}</view>
     </view>
   </view>
 <!-- </view> -->
@@ -17,6 +17,7 @@
 <view class='footer-btn' bindtap='save'>
   <text class='buy-btn'>申报中心</text>
 </view>
+
 <view wx:if="{{list.length==0}}" class='page'>
   <image src='../../../img/pjcg_evaluation_success@2x.png' class='nullicon'></image>
 </view>

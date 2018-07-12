@@ -27,7 +27,7 @@ Page({
             wx.hideLoading()
             if (res.data.Status == 1) {
               that.setData({
-                list: res.data.Result
+                list: res.data.Result[0].message
               })
             } else if (res.data.Status == 40001) {
               wx.showModal({

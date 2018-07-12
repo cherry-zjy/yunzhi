@@ -1,7 +1,7 @@
 /* pages/index/gooddetail/gooddetail.wxss */
 .good-image{
   width: 100%;
-  height: 350rpx;
+  height: 750rpx;
 }
 .detailbox{
   padding: 10rpx 20rpx;
@@ -219,4 +219,9 @@
   color: #BBBBBB;
   font-size: 30rpx;
   top: 10rpx;
+}
+.no-icon{
+  width: 300rpx;
+  height: 300rpx;
+  margin-top: 20rpx;
 }

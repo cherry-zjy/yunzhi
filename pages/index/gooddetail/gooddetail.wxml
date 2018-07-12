@@ -76,8 +76,8 @@
 </view>
 <!-- 评价 -->
 
-<view class='evabox'>
-  <view class="flex-wrp eva" wx:if="{{check == 'eva'}}" style="flex-direction:row;" wx:for="{{evalist}}" wx:key="index">
+<view class='evabox' wx:if="{{check == 'eva'}}">
+  <view class="flex-wrp eva" wx:if="{{evalist.length>=1}}" style="flex-direction:row;" wx:for="{{evalist}}" wx:key="index">
     <view class='eva-name'>{{item.Name}}</view>
     <view class='list-starbox'>
       <view wx:for="{{item.Star}}">
@@ -89,5 +89,8 @@
     </view>
     <view class='content'>{{item.commontContent}}</view>
     <view class='eva-time'>{{utilTitle.sub(item.Time)}}</view>
+  </view>
+  <view class='evabox'  wx:if="{{evalist.length==0}}" style='text-align:center'>
+    <image src='../../../img/pjcg_evaluation_success@2x.png' class='no-icon'></image>
   </view>
 </view>

@@ -13,6 +13,7 @@ Page({
     IsNext: false,
     next: false, //没有数据时弹框只提醒一次
     list: [],
+    isnull:true,
     showModal: false,
     handleid: ''
   },
@@ -52,6 +53,15 @@ Page({
           success: function(res) {
             wx.hideLoading()
             if (res.data.Status == 1) {
+              if (res.data.Result.dataList.length == 0){
+                that.setData({
+                  isnull: true
+                })
+              }else{
+                that.setData({
+                  isnull: false
+                })
+              }
               that.data.list = that.data.list.concat(res.data.Result.dataList)
               that.setData({
                 list: that.data.list,
@@ -189,8 +199,8 @@ Page({
         title: '提示',
         content: '请输入内容',
       })
+      return;
     }
-    return;
     wx.getStorage({
       key: 'token',
       success: function(res) {
@@ -300,6 +310,42 @@ Page({
     tt.setData({
       mainurl: app.mainUrl,
       pageIndex: 1
+    })
+    wx.getStorage({
+      key: 'type',
+      success: function (res) {
+        tt.setData({
+          type: res.data,
+        });
+      },
+      fail: function (res) {
+        wx.showModal({
+          title: '提示',
+          content: "请先登录",
+          success: function (res) {
+            if (res.confirm) {
+              wx.removeStorage({
+                key: 'token',
+                success: function (res) {
+                  console.log("删除token，保证只提醒一次")
+                },
+              })
+              wx.removeStorage({
+                key: 'type',
+                success: function (res) {
+                  console.log("删除type，保证只提醒一次")
+                },
+              })
+              wx.navigateTo({
+                url: '../../../login/enter/enter',
+              })
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
+        })
+      },
+      complete: function (res) { },
     })
   },
 
