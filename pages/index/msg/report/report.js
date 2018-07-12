@@ -183,9 +183,11 @@ Page({
             if (res.data.Status == 1) {
               wx.showToast({
                 title: res.data.Result,
-                pageIndex:1,
-                list:[]
               })
+              that.setData({
+                pageIndex: 1,
+                list: []
+              });
               setTimeout(() => {
                 that.getInfo()
               }, 1500);
@@ -234,7 +236,7 @@ Page({
           success: function(res) {
             if (res.confirm) {
               wx.navigateTo({
-                url: '../../login/login',
+                url: '../../../login/login',
               })
             } else if (res.cancel) {
               console.log('用户点击取消')

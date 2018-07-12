@@ -38,4 +38,18 @@
   <view class='msg-title'>成本中心描述</view>
   <view class='msg-detail'>9000704025</view>
 </view>
+<view class='order-other'>
+    <view class='orderbzbox' wx:for="{{item.MessageBoard}}" wx:for-item="items" wx:key="index">
+      <view class='order-bz'>{{items.name}}{{items.msg}}</view>
+      <view class='order-time'>{{items.careteTime}}</view>
+    </view>
+  </view>
+  <view class='order-kucun'>
+    <view class='order-kczs'>库存指示：
+      <view wx:if="{{item.Stock == 0}}" class='order-point cb'></view>
+      <view class='order-point ycb' wx:if="{{item.Stock == 1}}"></view>
+    </view>
+    <button wx:if="{{item.State == 0}}" class='order-btn cb' bindtap="showDialogBtn" data-id="{{item.ID}}">催办</button>
+    <button wx:if="{{item.State == 1}}" class='order-btn ycb'>已催办</button>
+  </view>
 </view>

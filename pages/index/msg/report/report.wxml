@@ -30,8 +30,8 @@
   </view>
   <view class='order-other'>
     <view class='orderbzbox' wx:for="{{item.MessageBoard}}" wx:for-item="items" wx:key="index">
-      <view class='order-bz'>{{items.name}}{{item.msg}}</view>
-      <view class='order-time'>{{utilTitle.sub(item.CreationDate)}}</view>
+      <view class='order-bz'>{{items.name}}{{items.msg}}</view>
+      <view class='order-time'>{{items.careteTime}}</view>
     </view>
   </view>
   <view class='order-kucun'>

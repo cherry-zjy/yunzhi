@@ -1,0 +1,29 @@
+
+var sub = function (val) {
+  val = getDate(val * 1000);
+  var year = val.getFullYear() + '-';
+  var month = (val.getMonth() + 1) + '-';
+  if (month.length == 2){
+    month = '0' + month
+  }
+  var date = val.getDate();
+  var h = val.getHours() + ':';
+  var m = val.getMinutes() + ':';
+  
+  var s = val.getSeconds();
+  if (s.toString().length == 1) {
+    s = '0' + s
+  }
+  if (h.length == 2) {
+    h = '0' + h
+  }
+  if (m.length == 2) {
+    m = '0' + m
+  }
+  // var week = ["星期日", "星期六", "星期五", "星期四", "星期三", "星期二", "星期一",];
+  // var day = week[val.getDay()];
+  // 得到当前日期格式
+  return year + month + date + ' ' + h + m + s +'\n';
+}
+
+module.exports.sub = sub;
