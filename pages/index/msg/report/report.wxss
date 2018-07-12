@@ -28,13 +28,13 @@ page{
   left: 8%;
   width: 40rpx;
   height: 40rpx;
-  top:28rpx;
+  top:32rpx;
   z-index: 1;
 }
 .serachimgbox{
   position: absolute;
   right: 30rpx;
-  top: 23rpx;
+  top: 30rpx;
   font-size: 30rpx; 
   color: #333333
 }

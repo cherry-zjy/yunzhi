@@ -64,12 +64,18 @@ Page({
               wx.showModal({
                 title: '提示',
                 content: res.data.Result,
-                success: function(res) {
+                success: function (res) {
                   if (res.confirm) {
                     wx.removeStorage({
                       key: 'token',
-                      success: function(res) {
+                      success: function (res) {
                         console.log("删除token，保证只提醒一次")
+                      },
+                    })
+                    wx.removeStorage({
+                      key: 'type',
+                      success: function (res) {
+                        console.log("删除type，保证只提醒一次")
                       },
                     })
                     wx.navigateTo({
@@ -96,9 +102,21 @@ Page({
       fail: function(res) {
         wx.showModal({
           title: '提示',
-          content: '获取信息失败，请重新登录',
-          success: function(res) {
+          content: "请先登录",
+          success: function (res) {
             if (res.confirm) {
+              wx.removeStorage({
+                key: 'token',
+                success: function (res) {
+                  console.log("删除token，保证只提醒一次")
+                },
+              })
+              wx.removeStorage({
+                key: 'type',
+                success: function (res) {
+                  console.log("删除type，保证只提醒一次")
+                },
+              })
               wx.navigateTo({
                 url: '../../../login/enter/enter',
               })
@@ -203,12 +221,18 @@ Page({
               wx.showModal({
                 title: '提示',
                 content: res.data.Result,
-                success: function(res) {
+                success: function (res) {
                   if (res.confirm) {
                     wx.removeStorage({
                       key: 'token',
-                      success: function(res) {
+                      success: function (res) {
                         console.log("删除token，保证只提醒一次")
+                      },
+                    })
+                    wx.removeStorage({
+                      key: 'type',
+                      success: function (res) {
+                        console.log("删除type，保证只提醒一次")
                       },
                     })
                     wx.navigateTo({
@@ -240,9 +264,21 @@ Page({
       fail: function(res) {
         wx.showModal({
           title: '提示',
-          content: '获取信息失败，请重新登录',
-          success: function(res) {
+          content: "请先登录",
+          success: function (res) {
             if (res.confirm) {
+              wx.removeStorage({
+                key: 'token',
+                success: function (res) {
+                  console.log("删除token，保证只提醒一次")
+                },
+              })
+              wx.removeStorage({
+                key: 'type',
+                success: function (res) {
+                  console.log("删除type，保证只提醒一次")
+                },
+              })
               wx.navigateTo({
                 url: '../../../login/enter/enter',
               })

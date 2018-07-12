@@ -11,14 +11,14 @@ Page({
     interval: 5000,
     duration: 1000,
     pageIndex: 1,
-    msgbox:false,
-    IsNext:false,
-    next:false,//没有数据时弹框只提醒一次
+    msgbox: false,
+    IsNext: false,
+    next: false, //没有数据时弹框只提醒一次
     goodsList: []
   },
   getBanner() {
     var that = this;
-     app.ajax({
+    app.ajax({
       method: 'get',
       url: app.mainUrl + 'api/AppHomePage/GetBannerList',
       data: {
@@ -149,31 +149,42 @@ Page({
    */
   onLoad: function(options) {
     var tt = this;
-    wx.getStorage({
-      key: 'type',
-      success: function (res) {
-        if (res.data == 0 || res.data == 1){
-          tt.setData({
-            msgbox: false
-          })
-        }else{
-          tt.setData({
-            msgbox: true
-          })
-        }
-      },
-      fail: function (res) {
-        if (options.isvisitor){
-
-        }else{
-          wx.navigateTo({
-            url: '../login/enter/enter'
-          })
-        }
-      },
-      complete: function (res) {
-      },
-    })
+    if (options.isvisitor) {
+      console.log(options.isvisitor)
+      tt.setData({
+        msgbox: false
+      })
+    } else {
+      console.log("???"+options.isvisitor)
+      wx.getStorage({
+        key: 'type',
+        success: function(res) {
+          console.log(res.data)
+          if (res.data == 0 || res.data == 1) {
+            tt.setData({
+              msgbox: false
+            })
+          } else {
+            tt.setData({
+              msgbox: true
+            })
+          }
+        },
+        fail: function(res) {
+          console.log(res.data)
+          if (options.isvisitor) {
+            tt.setData({
+              msgbox: false
+            })
+          } else {
+            wx.navigateTo({
+              url: '../login/enter/enter'
+            })
+          }
+        },
+        complete: function(res) {},
+      })
+    }
   },
 
   /**
@@ -210,20 +221,23 @@ Page({
 
   },
   /**
- * 页面相关事件处理函数--监听用户下拉动作
- */
-  onPullDownRefresh: function () {
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function() {
     wx.showNavigationBarLoading() //在标题栏中显示加载
     var that = this
     this.setData({
       pageIndex: 1,
-      goodsList:[]
+      goodsList: []
     })
     app.ajax({
       method: 'get',
       url: app.mainUrl + 'api/AppHomePage/CommendInstrument',
-      data: { pageIndex: Number(that.data.pageIndex), pageSize: 10},
-      success: function (res) {
+      data: {
+        pageIndex: Number(that.data.pageIndex),
+        pageSize: 10
+      },
+      success: function(res) {
         wx.hideLoading();
         wx.hideNavigationBarLoading() //完成停止加载
         wx.stopPullDownRefresh() //停止下拉刷新
@@ -245,7 +259,7 @@ Page({
         }
 
       },
-      error: function () {
+      error: function() {
         wx.hideLoading()
       }
     })
@@ -254,7 +268,7 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
     var that = this
     if (that.data.IsNext) {
       if (that.data.pageIndex == 1) {
@@ -264,7 +278,7 @@ Page({
       }
       that.getInfo()
     } else {
-      if (that.data.next == false) {//没有数据时弹框只提醒一次
+      if (that.data.next == false) { //没有数据时弹框只提醒一次
         that.setData({
           next: true
         })

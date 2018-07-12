@@ -45,6 +45,12 @@ Page({
                     console.log("删除token，保证只提醒一次")
                   },
                 })
+                wx.removeStorage({
+                  key: 'type',
+                  success: function (res) {
+                    console.log("删除type，保证只提醒一次")
+                  },
+                })
                 wx.navigateTo({
                   url: '../login/enter/enter',
                 })
@@ -63,6 +69,12 @@ Page({
       },
       error: function () {
         wx.hideLoading()
+        console.log('服务器异常')
+        wx.showModal({
+          showCancel: false,
+          title: '提示',
+          content: '服务器异常',
+        })
       }
     })
   },
@@ -130,8 +142,30 @@ Page({
         })
       },
       fail: function (res) {
-        wx.navigateTo({
-          url: '../../login/enter/enter'
+        wx.showModal({
+          title: '提示',
+          content: "请先登录",
+          success: function (res) {
+            if (res.confirm) {
+              wx.removeStorage({
+                key: 'token',
+                success: function (res) {
+                  console.log("删除token，保证只提醒一次")
+                },
+              })
+              wx.removeStorage({
+                key: 'type',
+                success: function (res) {
+                  console.log("删除type，保证只提醒一次")
+                },
+              })
+              wx.navigateTo({
+                url: '../login/enter/enter',
+              })
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
+          }
         })
       },
       complete: function (res) {
