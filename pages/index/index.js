@@ -167,7 +167,7 @@ Page({
 
         }else{
           wx.navigateTo({
-            url: '../login/login'
+            url: '../login/enter/enter'
           })
         }
       },

@@ -1,21 +1,17 @@
 <!--pages/index/msg/report/report.wxml-->
 <view class="page-section-spacing search-box">
-  <!-- <view class="serachbox">
+  <view class="serachbox">
     <input class='search' placeholder='请输入物料描述的关键字' bindinput="Changeinput"></input>
     <image class='search-icon' src='../../../../img/sy_search@2x.png'></image>
-  </view> -->
-  <view class="serachbox">
-      <input class='search' placeholder='请输入物料描述的关键字' bindinput="Changeinput"></input>
-      <image class='search-icon' src='../../../../img/sy_search@2x.png'></image>
-      <view class="serachimgbox" bindtap='search'>
-        搜索
-      </view>
+    <view class="serachimgbox" bindtap='search'>
+      搜索
     </view>
+  </view>
 </view>
 <!--wxs语法过滤器  -->
 <wxs module="utilTitle">
   var sub = function(val) {
-    return val.substring(0,10)
+    return val.substring(0, 10)
   }
   module.exports.sub = sub;
 </wxs>
@@ -26,11 +22,13 @@
   </view>
   <view class='order-dec'>
     <view class='order-description'>物料描述：{{item.MaterIntroduce}}</view>
-    <view class='order-description' wx:for="{{item.Name}}" wx:for-item="items" wx:key="index">接收人：{{items}}<text wx:if="{{index!==item.Name.length-1}}">,</text></view>
+    <view class='order-description' wx:for="{{item.Name}}" wx:for-item="items" wx:key="index">接收人：{{items}}
+      <text wx:if="{{index!==item.Name.length-1}}">,</text>
+    </view>
   </view>
   <view class='order-other'>
     <view class='orderbzbox' wx:for="{{item.MessageBoard}}" wx:for-item="items" wx:key="index">
-      <view class='order-bz'>{{items.name}}{{items.msg}}</view>
+      <view class='order-bz'>{{items.msg}}</view>
       <view class='order-time'>{{items.careteTime}}</view>
     </view>
   </view>
@@ -44,15 +42,15 @@
   </view>
 </view>
 <view wx:if="{{list.length==0}}" class='page'>
-    <image src='../../../../img/pjcg_evaluation_success@2x.png' class='nullicon'></image>
-  </view>
+  <image src='../../../../img/pjcg_evaluation_success@2x.png' class='nullicon'></image>
+</view>
 <!--弹窗-->
 <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
 <view class="modal-dialog" wx:if="{{showModal}}" animation="{{animationData}}">
   <view class="modal-title">备注</view>
   <view class="modal-content">
     <view class="modal-input">
-      <textarea auto-focus="true" style="height: 6em" bindinput="ChangeName"/>
+      <textarea auto-focus="true" style="height: 6em" bindinput="ChangeName" />
     </view>
   </view>
   <view class="modal-footer">

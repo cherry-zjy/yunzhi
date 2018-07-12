@@ -95,7 +95,7 @@ Page({
                       },
                     })
                     wx.navigateTo({
-                      url: '../../login/login',
+                      url: '../../login/enter/enter',
                     })
                   } else if (res.cancel) {
                     console.log('用户点击取消')
@@ -109,7 +109,7 @@ Page({
                 success: function (res) {
                   if (res.confirm) {
                     wx.navigateTo({
-                      url: '../../login/login',
+                      url: '../../login/enter/enter',
                     })
                   } else if (res.cancel) {
                     console.log('用户点击取消')
@@ -120,7 +120,7 @@ Page({
           },
           error: function () {
             wx.navigateTo({
-              url: '../../login/login'
+              url: '../../login/enter/enter'
             })
           }
         })

@@ -1,55 +1,72 @@
 <!--pages/index/msg/report/detail/detail.wxml-->
 <!-- <image src='../../../../../img/sbxq_bj@2x.png' class='bj'></image> -->
-<view class='title'>库存指示：不足</view>
+<view class='title'>
+  <text class='noten' wx:if="{{list.Stock == 0}}">库存指示：不足</text>
+  <text class='en' wx:if="{{list.Stock == 1}}">库存指示：足够</text>
+</view>
 <view class='msgbox'>
-<view class='msg'>
-  <view class='msg-title'>需求单号</view>
-  <view class='msg-detail'>9000704025</view>
-</view>
-<view class='msg'>
-  <view class='msg-title'>预留号</view>
-  <view class='msg-detail'>9000704025</view>
-</view>
-<view class='msg'>
-  <view class='msg-title'>需求日期</view>
-  <view class='msg-detail'>9000704025</view>
-</view>
-<view class='msg'>
-  <view class='msg-title'>创建日期</view>
-  <view class='msg-detail'>9000704025</view>
-</view>
-<view class='msg'>
-  <view class='msg-title'>物料编码</view>
-  <view class='msg-detail'>9000704025</view>
-</view>
-<view class='msg'>
-  <view class='msg-title'>需求数量</view>
-  <view class='msg-detail'>9000704025</view>
-</view>
-<view class='msg'>
-  <view class='msg-title'>基本计量单位</view>
-  <view class='msg-detail'>9000704025</view>
-</view>
-<view class='msg'>
-  <view class='msg-title'>物料描述</view>
-  <view class='msg-detail'>9000704025</view>
-</view>
-<view class='msg'>
-  <view class='msg-title'>成本中心描述</view>
-  <view class='msg-detail'>9000704025</view>
-</view>
-<view class='order-other'>
-    <view class='orderbzbox' wx:for="{{item.MessageBoard}}" wx:for-item="items" wx:key="index">
-      <view class='order-bz'>{{items.name}}{{items.msg}}</view>
+  <view class='msg'>
+    <view class='msg-title'>需求单号</view>
+    <view class='msg-detail'>{{list.OddNumber}}</view>
+  </view>
+  <view class='msg'>
+    <view class='msg-title'>预留号</view>
+    <view class='msg-detail'>{{list.ObligateNumber}}</view>
+  </view>
+  <view class='msg'>
+    <view class='msg-title'>需求日期</view>
+    <view class='msg-detail'>{{list.NeedTime}}</view>
+  </view>
+  <view class='msg'>
+    <view class='msg-title'>创建日期</view>
+    <view class='msg-detail'>{{list.CreateData}}</view>
+  </view>
+  <view class='msg'>
+    <view class='msg-title'>物料编码</view>
+    <view class='msg-detail'>{{list.MaterialCode}}</view>
+  </view>
+  <view class='msg'>
+    <view class='msg-title'>需求数量</view>
+    <view class='msg-detail'>{{list.DemanQuantity}}</view>
+  </view>
+  <view class='msg'>
+    <view class='msg-title'>基本计量单位</view>
+    <view class='msg-detail'>{{list.MeasurementUnit}}</view>
+  </view>
+  <view class='msg'>
+    <view class='msg-title'>物料描述</view>
+    <view class='msg-detail'>{{list.MaterIntroduce}}</view>
+  </view>
+  <view class='msg'>
+    <view class='msg-title'>成本中心描述</view>
+    <view class='msg-detail'>{{list.CostCenterIntroduce}}</view>
+  </view>
+  <view class='order-other'>
+    <view class='orderbzbox' wx:for="{{list.MessageList}}" wx:for-item="items" wx:key="index">
+      <view class='order-bz'>{{items.msg}}</view>
       <view class='order-time'>{{items.careteTime}}</view>
     </view>
   </view>
   <view class='order-kucun'>
-    <view class='order-kczs'>库存指示：
-      <view wx:if="{{item.Stock == 0}}" class='order-point cb'></view>
-      <view class='order-point ycb' wx:if="{{item.Stock == 1}}"></view>
+    <view class="order-status {{list.HasDeclare? 'cb' : ''}}">{{list.HasDeclare? '已处理' : '未处理'}}</view>
+    <view wx:if="{{!list.HasDeclare}}">
+      <button wx:if="{{type==3}}" class='order-btn cb' bindtap="showDialogBtn" data-id="{{list.ID}}">催办</button>
+      <button wx:if="{{type==2}}" class='order-btn cb' bindtap="showDialogBtn" data-id="{{list.ID}}">回复</button>
     </view>
-    <button wx:if="{{item.State == 0}}" class='order-btn cb' bindtap="showDialogBtn" data-id="{{item.ID}}">催办</button>
-    <button wx:if="{{item.State == 1}}" class='order-btn ycb'>已催办</button>
+  </view>
+</view>
+
+<!--弹窗-->
+<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+<view class="modal-dialog" wx:if="{{showModal}}" animation="{{animationData}}">
+  <view class="modal-title">备注</view>
+  <view class="modal-content">
+    <view class="modal-input">
+      <textarea auto-focus="true" style="height: 6em" bindinput="ChangeName" />
+    </view>
+  </view>
+  <view class="modal-footer">
+    <view class="btn-cancel" bindtap="onCancel" data-status="cancel">取消</view>
+    <view class="btn-confirm" bindtap="onConfirm" data-status="confirm">确定</view>
   </view>
 </view>

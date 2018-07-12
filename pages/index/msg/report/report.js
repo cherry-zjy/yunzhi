@@ -73,7 +73,7 @@ Page({
                       },
                     })
                     wx.navigateTo({
-                      url: '../../../login/login',
+                      url: '../../../login/enter/enter',
                     })
                   } else if (res.cancel) {
                     console.log('用户点击取消')
@@ -100,7 +100,7 @@ Page({
           success: function(res) {
             if (res.confirm) {
               wx.navigateTo({
-                url: '../../../login/login',
+                url: '../../../login/enter/enter',
               })
             } else if (res.cancel) {
               console.log('用户点击取消')
@@ -164,7 +164,15 @@ Page({
    */
   onConfirm: function() {
     this.hideModal();
-    var that = this
+    var that = this;
+    if (that.data.message == ""){
+      wx.showModal({
+        showCancel: false,
+        title: '提示',
+        content: '请输入内容',
+      })
+    }
+    return;
     wx.getStorage({
       key: 'token',
       success: function(res) {
@@ -204,7 +212,7 @@ Page({
                       },
                     })
                     wx.navigateTo({
-                      url: '../../../login/login',
+                      url: '../../../login/enter/enter',
                     })
                   } else if (res.cancel) {
                     console.log('用户点击取消')
@@ -236,7 +244,7 @@ Page({
           success: function(res) {
             if (res.confirm) {
               wx.navigateTo({
-                url: '../../../login/login',
+                url: '../../../login/enter/enter',
               })
             } else if (res.cancel) {
               console.log('用户点击取消')
@@ -257,47 +265,6 @@ Page({
       mainurl: app.mainUrl,
       pageIndex: 1
     })
-    // wx.getStorage({
-    //   key: 'token',
-    //   success: function (res) {
-    //     tt.setData({
-    //       token: res.data
-    //     });
-    //   },
-    //   fail: function (res) {
-    //     wx.showToast({
-    //       title: "获取信息失败，请重新登录"
-    //     })
-    //     setTimeout(() => {
-    //       wx.navigateTo({
-    //         url: '../../login/login'
-    //       })
-    //     }, 1500);
-    //   },
-    //   complete: function (res) {
-    //   },
-    // })
-    // wx.getStorage({
-    //   key: 'type',
-    //   success: function (res) {
-    //     tt.setData({
-    //       type: res.data
-    //     });
-    //   },
-    //   fail: function (res) {
-    //     wx.showToast({
-    //       title: "获取信息失败，请重新登录"
-    //     })
-    //     setTimeout(() => {
-    //       wx.navigateTo({
-    //         url: '../../login/login'
-    //       })
-    //     }, 1500);
-    //   },
-    //   complete: function (res) {
-    //   },
-    // })
-
   },
 
   /**
