@@ -1,6 +1,8 @@
 <!--pages/index/gooddetail/gooddetail.wxml-->
-<image src='{{mainurl + List.Image}}' class='good-image'></image>
+
+<image src='{{mainurl + List.Image}}' class='good-image' data-src="{{mainurl + List.Image}}" bindtap="previewImage"></image>
 <!--wxs语法过滤器  -->
+<wxs src='../../../type.wxs' module='type' />
 <wxs module="utilTitle">
   var sub = function(val) {
     return val.substring(0, 10)
@@ -40,7 +42,7 @@
   <view class='title'>产品参数</view>
   <view class="table">
     <view class="onetr" wx:for="{{spectype}}" wx:key="index">
-      <view class="one-td3">{{item.type}}</view>
+      <view class="one-td3">{{type.sub(item.type,List.ProductType)}}</view>
       <view class="one-td4">{{item.value}}</view>
     </view>
   </view>
@@ -50,7 +52,7 @@
 <view class='store-agent' wx:if="{{check == 'detail'}}" wx:for="{{userlist}}" wx:key="index">
   <view class='agent-box'>
     <view class='agent-msg'>
-      <image class="store-icon" src='../../../../img/apxq_head_portrait@2x.png'></image>
+      <image class="store-icon" src='../../../img/apxq_head_portrait@2x.png'></image>
     </view>
   </view>
   <view class='agent-box detail'>

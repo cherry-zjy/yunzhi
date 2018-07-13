@@ -141,6 +141,12 @@ Page({
 
 
   },
+  gotodetail(event) {
+    var id = event.currentTarget.dataset.id
+    wx.navigateTo({
+      url: "detail/detail?id=" + id,
+    })
+  },
   /**
    * 弹窗
    */

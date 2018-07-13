@@ -1,0 +1,162 @@
+var sub = function(val, ProductType) {
+  switch (ProductType) {
+    case 1:
+      switch (val) {
+        case 0:
+          val = '产品编号'
+          break;
+        case 1:
+          val = '货号'
+          break;
+        case 2:
+          val = '规格'
+          break;
+        case 3:
+          val = '包装 只/包'
+          break;
+      }
+      break;
+    case 2:
+      switch (val) {
+        case 0:
+          val = '货号'
+          break;
+        case 1:
+          val = '规格/型号'
+          break;
+        case 2:
+          val = '单位(支) '
+          break;
+        case 3:
+          val = '备注'
+          break;
+      }
+      break;
+    case 3:
+      switch (val) {
+        case 0:
+          val = '货号'
+          break;
+        case 1:
+          val = '直径(mm)'
+          break;
+        case 2:
+          val = '长度(mm)'
+          break;
+        case 3:
+          val = '材质'
+          break;
+        case 4:
+          val = '大小(微米)'
+          break;
+        case 5:
+          val = '键合相'
+          break;
+      }
+      break;
+    case 4:
+      switch (val) {
+        case 0:
+          val = '序号'
+          break;
+        case 1:
+          val = '货号'
+          break;
+        case 2:
+          val = '型号'
+          break;
+      }
+      break;
+    case 5:
+      switch (val) {
+        case 0:
+          val = '货号'
+          break;
+        case 1:
+          val = '尺寸(H*W*D)'
+          break;
+        case 2:
+          val = '材质'
+          break;
+        case 3:
+          val = '标配'
+          break;
+        case 4:
+          val = '选配'
+          break;
+      }
+    case 6:
+      switch (val) {
+        case 0:
+          val = 'Status'
+          break;
+        case 1:
+          val = 'Category'
+          break;
+        case 2:
+          val = 'Popularity'
+          break;
+        case 3:
+          val = 'applications 应用'
+          break;
+        case 4:
+          val = 'USP code 美国药典代码'
+          break;
+        case 5:
+          val = 'Phase 固定相'
+          break;
+      }
+    default:
+      switch (val) {
+        case 4:
+          val = 'USP code 美国药典代码'
+          break;
+        case 5:
+          val = 'Phase 固定相'
+          break;
+        case 6:
+          val = 'GSBP Part Number 货号'
+          break;
+        case 7:
+          val = 'GsBP Description 描写'
+          break;
+        case 8:
+          val = 'U/M'
+          break;
+        case 9:
+          val = 'long description formular'
+          break;
+        case 10:
+          val = 'Equivalent Phase'
+          break;
+        case 11:
+          val = 'Agilent HP'
+          break;
+        case 12:
+          val = 'Agilent DB'
+          break;
+        case 13:
+          val = 'Agilent CP'
+          break;
+        case 14:
+          val = 'Agilent VF'
+          break;
+        case 15:
+          val = 'Restek Rtx'
+          break;
+        case 16:
+          val = 'Restek Rxi'
+          break;
+        case 17:
+          val = 'Phenomenex ZB'
+          break;
+        case 18:
+          val = 'Thermo'
+          break;
+      }
+      break;
+  }
+  return val;
+}
+
+module.exports.sub = sub;

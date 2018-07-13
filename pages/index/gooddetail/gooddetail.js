@@ -52,7 +52,7 @@ Page({
                   },
                 })
                 wx.navigateTo({
-                  url: '../login/enter/enter',
+                  url: '../../login/enter/enter',
                 })
               } else if (res.cancel) {
                 console.log('用户点击取消')
@@ -111,6 +111,16 @@ Page({
         wx.hideLoading()
       }
     })
+  },  
+  // 图片放大
+  previewImage: function (e) {
+    var current = e.target.dataset.src
+    var urls = Array();
+    urls.push(current)
+    wx.previewImage({
+      current: current,
+      urls: urls
+    })
   },
   changedetail(){
     this.setData({
@@ -160,7 +170,7 @@ Page({
                 },
               })
               wx.navigateTo({
-                url: '../login/enter/enter',
+                url: '../../login/enter/enter',
               })
             } else if (res.cancel) {
               console.log('用户点击取消')

@@ -154,12 +154,17 @@ Page({
       tt.setData({
         msgbox: false
       })
+      this.setData({
+        mainurl: app.mainUrl,
+        pageIndex: 1
+      })
+      tt.getBanner();
+      tt.getInfo();
+      tt.commend();
     } else {
-      console.log("???"+options.isvisitor)
       wx.getStorage({
         key: 'type',
         success: function(res) {
-          console.log(res.data)
           if (res.data == 0 || res.data == 1) {
             tt.setData({
               msgbox: false
@@ -169,18 +174,32 @@ Page({
               msgbox: true
             })
           }
+          tt.setData({
+            mainurl: app.mainUrl,
+            pageIndex: 1
+          })
+          tt.getBanner();
+          tt.getInfo();
+          tt.commend();
         },
         fail: function(res) {
-          console.log(res.data)
-          if (options.isvisitor) {
-            tt.setData({
-              msgbox: false
-            })
-          } else {
+          // console.log(res.data)
+          // if (options.isvisitor) {
+          //   tt.setData({
+          //     msgbox: false
+          //   })
+          //   this.setData({
+          //     mainurl: app.mainUrl,
+          //     pageIndex: 1
+          //   })
+          //   this.getBanner();
+          //   this.getInfo();
+          //   this.commend();
+          // } else {
             wx.navigateTo({
               url: '../login/enter/enter'
             })
-          }
+          // }
         },
         complete: function(res) {},
       })
@@ -191,13 +210,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-    this.setData({
-      mainurl: app.mainUrl,
-      pageIndex: 1
-    })
-    this.getBanner();
-    this.getInfo();
-    this.commend();
+    
   },
 
   /**

@@ -29,7 +29,7 @@
   left: 8%;
   width: 40rpx;
   height: 40rpx;
-  top:28rpx;
+  top:25rpx;
   z-index: 1;
 }
 /* 分类 */

@@ -1,7 +1,5 @@
 {
   "pages":[
-    
-    
     "pages/index/index",
     "pages/index/banner/banner",
     "pages/login/enter/enter",
