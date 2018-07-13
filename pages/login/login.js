@@ -27,8 +27,8 @@ Page({
           tip: '',
         })
       }, 1000)
-    // } else if (e.detail.value.Phone.length !== 11 || !(/^1[34578]\d{9}$/.test(e.detail.value.Phone))) {
-    } else if (e.detail.value.Phone.length !== 11) {
+    } else if (e.detail.value.Phone.length !== 11 || !(/^1[34578]\d{9}$/.test(e.detail.value.Phone))) {
+    // } else if (e.detail.value.Phone.length !== 11) {
       that.setData({
         tip: '提示：请输入正确的手机号！',
       })
@@ -85,8 +85,6 @@ Page({
                       })
                     }
                   })
-                  
-                  
                 } else {
                   wx.showModal({
                     showCancel: false,
