@@ -108,6 +108,7 @@ Page({
     var id = e.currentTarget.dataset.id
     this.setData({
       handleid: id,
+      message:''
     })
     // 显示遮罩层  
     var animation = wx.createAnimation({
@@ -159,8 +160,8 @@ Page({
         title: '提示',
         content: '请输入内容',
       })
+      return;
     }
-    return;
     wx.getStorage({
       key: 'token',
       success: function (res) {

@@ -112,10 +112,10 @@ page{
   margin-left: 10rpx;
 }
 .order-point.cb{
-  background-color: #1ABA78;
+  background-color: #FF0202;
 }
 .order-point.ycb{
-  background-color: #FF0202;
+  background-color: #1ABA78;
 }
 .order-btn{
   float: right;

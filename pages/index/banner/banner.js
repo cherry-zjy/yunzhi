@@ -14,7 +14,7 @@ Page({
   onLoad: function (options) {
     console.log(options)
     this.setData({
-      src: options.url
+      src: "http://baidu.com"
     })
   },
 

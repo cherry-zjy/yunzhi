@@ -105,12 +105,15 @@
   background-color: unset;
 }
 /* 经纪人 */
+.store-box{
+  padding-bottom: 100rpx;
+  float: left;
+}
 .store-agent{
   margin-top: 30rpx;
   width: 100%;
   float: left;
   border-bottom: 1rpx solid #EEEEEE;
-  padding-bottom: 100rpx;
 }
 .agent-box{
   float: left;

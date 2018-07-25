@@ -1,8 +1,9 @@
 {
   "pages":[
+    "pages/login/enter/enter",
     "pages/index/index",
     "pages/index/banner/banner",
-    "pages/login/enter/enter",
+    
     "pages/login/login",
     "pages/index/search/search",
     "pages/index/order/order",

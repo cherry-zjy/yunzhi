@@ -49,18 +49,20 @@
 </view>
 <view class='greyline' wx:if="{{check == 'detail'}}"></view>
 
-<view class='store-agent' wx:if="{{check == 'detail'}}" wx:for="{{userlist}}" wx:key="index">
-  <view class='agent-box'>
-    <view class='agent-msg'>
-      <image class="store-icon" src='../../../img/apxq_head_portrait@2x.png'></image>
+<view class='store-box' wx:if="{{check == 'detail'}}">
+  <view class='store-agent' wx:for="{{userlist}}" wx:key="index">
+    <view class='agent-box'>
+      <view class='agent-msg'>
+        <image class="store-icon" src='../../../img/apxq_head_portrait@2x.png'></image>
+      </view>
     </view>
-  </view>
-  <view class='agent-box detail'>
-    <view class='agent-name'>{{item.Name}}
-      <text class='agent-phone' bindtap='makePhoneCall' data-phone='{{item.Phone}}'>{{item.Phone}}</text>
-    </view>
-    <view class='agent-add'>{{item.Region}}
-      <text class='agent-brand'>{{item.Brand}}</text>
+    <view class='agent-box detail'>
+      <view class='agent-name'>{{item.Name}}
+        <text class='agent-phone' bindtap='makePhoneCall' data-phone='{{item.Phone}}'>{{item.Phone}}</text>
+      </view>
+      <view class='agent-add'>{{item.Region}}
+        <text class='agent-brand'>{{item.Brand}}</text>
+      </view>
     </view>
   </view>
 </view>
@@ -92,7 +94,7 @@
     <view class='content'>{{item.commontContent}}</view>
     <view class='eva-time'>{{utilTitle.sub(item.Time)}}</view>
   </view>
-  <view class='evabox'  wx:if="{{evalist.length==0}}" style='text-align:center'>
+  <view class='evabox' wx:if="{{evalist.length==0}}" style='text-align:center'>
     <image src='../../../img/pjcg_evaluation_success@2x.png' class='no-icon'></image>
   </view>
 </view>

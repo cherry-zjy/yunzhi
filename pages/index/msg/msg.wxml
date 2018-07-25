@@ -1,16 +1,26 @@
 <!--pages/index/msg/msg.wxml-->
 
-<wxs src='../../../index.wxs' module='utilTitle' />
+<!-- <wxs src='../../../index.wxs' module='utilTitle' /> -->
+<!--wxs语法过滤器  -->
+<wxs module="utilTitle">
+  var sub = function(val) {
+    val = val.substring(0, 19)
+    val = val.replace("T"," ")
+    return val
+  }
+  module.exports.sub = sub;
+</wxs>
 <view class="msgbox {{list.length>=1? 'on' : ''}}"> 
-<view class="flex-wrp" style="flex-direction:row;" wx:for="{{list}}" wx:key="index" wx:if="{{list.length>=1}}" data-id="{{item.DeclareID}}" bindtap="gotodetail">
+<view class="flex-wrp" style="flex-direction:row;" wx:for="{{list}}" wx:key="index" wx:if="{{list.length>=1}}" data-id="{{item.ID}}" bindtap="gotodetail">
    
     <view class="flex-item icon">
       <image src='../../../img/xx_announcement@2x.png'></image>
     </view>
     <view class="flex-item msg">
       <view class='msg-title'>系统消息</view>
-      <view class='msg-time'>\n{{utilTitle.sub(item.CreateTime)}}</view>
-      <view class='msg-content'>{{item.Message}}</view>
+      <!-- <view class='msg-time'>\n{{utilTitle.sub(item.CreateTime)}}</view> -->
+      <view class='msg-time'>{{utilTitle.sub(item.Time)}}</view>
+      <view class='msg-content'>{{item.message}}</view>
     </view>
   </view>
  </view> 

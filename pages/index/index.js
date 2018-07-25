@@ -276,6 +276,37 @@ Page({
         wx.hideLoading()
       }
     })
+    wx.getStorage({
+      key: 'token',
+      success: function (res) {
+        app.ajax({
+          method: 'post',
+          url: app.mainUrl + 'api/AppHomePage/Refresh',
+          header: {
+            "token": res.data
+          },
+          success: function (res) {
+            if (res.data.Result == 0 || res.data.Result == 1) {
+              that.setData({
+                msgbox: false
+              })
+            } else {
+              that.setData({
+                msgbox: true
+              })
+            }
+          },
+          error: function () {
+            wx.hideLoading()
+          }
+        })
+      },
+      fail: function (res) {
+        
+      },
+      complete: function (res) { },
+    })
+    
   },
 
   /**

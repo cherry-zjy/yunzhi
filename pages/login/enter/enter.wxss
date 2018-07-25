@@ -16,14 +16,14 @@ page{
   margin-top: 40%;
 }
 .btn {
-  background: #26A3DE;
+  background-color: #26A3DE;
   width: 80%;
   color: #fff;
   margin-top: 50rpx;
+  font-size: 32rpx;
 }
-.btn.youke{
+.btn.youke{                    
   border: 1rpx solid #26A3DE;
   background-color: #fff;
   color: #333333;
-  font-size: 32rpx;
 }
